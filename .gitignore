@@ -1,0 +1,4 @@
+*.o
+DOCS
+DOCS\*
+*.dSYM
