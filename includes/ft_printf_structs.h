@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 19:02:30 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/11 22:44:14 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/12 14:02:45 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@ enum	e_type_size
     VOID_P  = sizeof(void *)
 };
 
+# define N_LENGTH_TYPES 6
+
 enum	e_length_types
 {
-    NO_LENGTH = -1,
     _DEF_     = 1,
     HH        = 2,
     H         = 3,
@@ -70,7 +71,7 @@ typedef union	u_polymorphous_functions
 	char		*(*c_handler)(t_format *format, char c);
 	char		*(*s_handler)(t_format *format, char *string);
 	char		*(*p_handler)(t_format *format, void *pointer);
-	char		*(*i_handler)(t_format *format, int i);
+	char		*(*d_handler)(t_format *format, long long value);
 	char		*(*perc_handler)(t_format *format, ...);
 }				t_polymorphous_functions;
 

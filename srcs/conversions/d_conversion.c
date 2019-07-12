@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   s_conversion.c                                     :+:      :+:    :+:   */
+/*   d_conversion.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/11 10:57:18 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/11 23:50:44 by kmira            ###   ########.fr       */
+/*   Created: 2019/07/12 13:57:38 by kmira             #+#    #+#             */
+/*   Updated: 2019/07/12 14:08:29 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*s_handler(t_format *format, char *string)
+char	*d_handler(t_format *format, long long value)
 {
-	(void)string;
 	(void)format;
-	printf("%s", string);
-	printf("S HANDLER\n");
-	return ("S HANDLER");
+	(void)value;
+	printf("D HANDLER\n");
+	return ("D HANDLER\n");
 }

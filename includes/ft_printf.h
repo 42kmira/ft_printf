@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 18:09:42 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/11 22:39:20 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/12 14:12:09 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,14 @@
 
 int			ft_printf(const char *format, ...);
 
-void 	set_specifier_handler(t_polymorphous_functions *function, const char *specifier);
+/*
+** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
+** FILE: args_tools.c
+** Handles things dealing with va_args, like fetching size arguement
+*/
+
+int		get_arguement_size(int specifier, int length);
+void	set_specifier_handler(t_polymorphous_functions *function, const char *specifier);
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
@@ -64,8 +71,9 @@ t_format	extract_format(const char *format_string, size_t *index);
 */
 
 char		*c_handler(t_format *format, char c);
-char		*s_handler(t_format *format, char *string);
+char		*d_handler(t_format *format, long long value);
 char		*p_handler(t_format *format, void *pointer);
 char		*perc_handler(t_format *format, ...);
+char		*s_handler(t_format *format, char *string);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 18:25:33 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/11 18:11:27 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/12 14:06:35 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,5 @@ int	main(void)
 
 	VERIFY("Testing %% Three two one %%");
 
-	VERIFY("Testing %---s", "STRING");
-	// VERIFY("Another one");
+	VERIFY("Length test %hhd", (char)5);
 }
