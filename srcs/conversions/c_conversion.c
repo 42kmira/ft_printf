@@ -6,13 +6,13 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 10:55:44 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/11 12:44:41 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/11 21:33:48 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*c_handlers(t_format *format, char c)
+char	*c_handler(t_format *format, char c)
 {
 	(void)c;
 	(void)format;

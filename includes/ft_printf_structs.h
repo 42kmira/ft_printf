@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 19:02:30 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/11 12:45:34 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/11 21:33:18 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ enum	e_length_types
     XL        = 6
 };
 
-# define N_FLAGS 5
+# define N_FLAGS 6
 
 enum	e_printf_flags
 {
@@ -67,10 +67,11 @@ typedef struct	s_format
 typedef union	u_polymorphous_functions
 {
 	char		*(*function)(t_format *format, ...);
-	char		*(*c_specifier)(t_format *fornmat, char c);
-	char		*(*s_specifier)(t_format *fornmat, char *string);
-	char		*(*p_specifier)(t_format *fornmat, void *pointer);
-	char		*(*i_specifier)(t_format *fornmat, int i);
+	char		*(*c_specifier)(t_format *format, char c);
+	char		*(*s_specifier)(t_format *format, char *string);
+	char		*(*p_specifier)(t_format *format, void *pointer);
+	char		*(*i_specifier)(t_format *format, int i);
+	char		*(*perc_specifier)(t_format *format, ...);
 }				t_polymorphous_functions;
 
 #endif

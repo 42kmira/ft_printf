@@ -6,7 +6,7 @@
 #    By: kmira <kmira@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/07 18:32:39 by kmira             #+#    #+#              #
-#    Updated: 2019/07/11 13:07:34 by kmira            ###   ########.fr        #
+#    Updated: 2019/07/11 13:31:17 by kmira            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,9 @@ INCLUDES = includes
 LIBRARY = libft/libft.a
 
 MAIN_FILES = \
+		conversion_parser \
+		global_structs \
 		main \
-		conversion_parser
 
 CONVERSION_FILES = \
 		c_conversion \

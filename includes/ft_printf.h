@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 18:09:42 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/11 12:44:18 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/11 21:39:42 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,9 @@
 #  define EXIT(error_msg) ft_puterror(error_msg)
 # endif
 
-int	ft_printf(const char *format, ...);
+int			ft_printf(const char *format, ...);
 
+char	(*set_specifier_handler(t_polymorphous_functions *function, const char *specifier))(t_format, ...);
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
 ** FILE: conversion_parser.c
@@ -61,8 +62,9 @@ t_format	extract_format(const char *format_string, size_t *index);
 ** Directory that has the files to handle the different conversions.
 */
 
-char	*c_handlers(t_format *format, char c);
-char	*s_handlers(t_format *format, char *string);
-char	*p_handlers(t_format *format, void *pointer);
+char		*c_handler(t_format *format, char c);
+char		*s_handler(t_format *format, char *string);
+char		*p_handler(t_format *format, void *pointer);
+char		*perc_handler(t_format *format, ...);
 
 #endif

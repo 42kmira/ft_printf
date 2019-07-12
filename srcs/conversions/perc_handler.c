@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   p_conversion.c                                     :+:      :+:    :+:   */
+/*   perc_handler.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/11 10:58:13 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/11 21:33:52 by kmira            ###   ########.fr       */
+/*   Created: 2019/07/11 21:32:07 by kmira             #+#    #+#             */
+/*   Updated: 2019/07/11 21:37:52 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "ft_printf.h"
 
-char	*p_handler(t_format *format, void *pointer)
+char	*perc_handler(t_format *format, ...)
 {
-	(void)pointer;
 	(void)format;
-	return ("P HANDLER");
+	return ("% Handler");
 }
