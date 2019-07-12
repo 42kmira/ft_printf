@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 19:32:48 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/11 21:45:19 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/11 22:46:17 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,13 @@ int		get_arguement_size(int specifier, int length)
 	}
 	if (g_type_table[i][SPECIFIER] == NULL_TERM)
 		EXIT(RED"Could not find this specifier");
+	return (-1);
 }
 
-char	*(*set_specifier_handler(t_polymorphous_functions *function, const char *specifier))(t_format *, ...)
+void	set_specifier_handler(t_polymorphous_functions *function, const char *specifier)
 {
-	char	*(*result_function)(t_format *, ...);
-
 	if (specifier[0] == 's')
-		result_function = &s_handler;
+		function->s_handler = s_handler;
 	if (specifier[0] == '%')
-		result_function = &perc_handler;
-	return (result_function);
+		function->perc_handler = perc_handler;
 }

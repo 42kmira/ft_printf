@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 18:09:42 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/11 21:44:19 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/11 22:39:20 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@
 
 int			ft_printf(const char *format, ...);
 
-char	*(*set_specifier_handler(t_polymorphous_functions *function, const char *specifier))(t_format *, ...);
+void 	set_specifier_handler(t_polymorphous_functions *function, const char *specifier);
+
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
 ** FILE: conversion_parser.c

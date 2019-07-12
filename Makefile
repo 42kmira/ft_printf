@@ -6,7 +6,7 @@
 #    By: kmira <kmira@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/07 18:32:39 by kmira             #+#    #+#              #
-#    Updated: 2019/07/11 21:44:53 by kmira            ###   ########.fr        #
+#    Updated: 2019/07/11 22:39:41 by kmira            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ LIBRARY = libft/libft.a
 CONVERSION_FILES = \
 		c_conversion \
 		p_conversion \
+		perc_conversion \
 		s_conversion
 
 MAIN_FILES = \

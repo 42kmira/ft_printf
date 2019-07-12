@@ -6,19 +6,12 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 17:59:46 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/11 21:29:19 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/11 22:48:06 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "../libft/libft.h"
-
-char	*s_handler(t_format *format, char *string)
-{
-	write(1, string, ft_strlen(string));
-	(void)format;
-	return (NULL);
-}
 
 int		convert(const char *format, size_t *index, va_list args)
 {
@@ -27,16 +20,17 @@ int		convert(const char *format, size_t *index, va_list args)
 
 	if (format[*index] == '%')
 		*index = *index + 1;
+
 	formatter = extract_format(format, index);
 
 	//I might be able to cast it as something
-	function.function = set_specifier_handler(&function, formatter.specifier);
-	// extract_specifier_handler;
-	// specifier_handler();
+	set_specifier_handler(&function, formatter.specifier);
 
-	write(1, "SPECIFIER: ", 12);
-	write(1, formatter.specifier, 1);
-	write(1, " END\n", 5);
+	if (formatter.specifier[0] == 's')
+		function.function(&formatter, va_arg(args, char *));
+	if (formatter.specifier[0] == '%')
+		function.function(&formatter);
+	// specifier_handler();
 
 	*index = *index + 1;
 	(void)args;

@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 19:02:30 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/11 21:44:05 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/11 22:44:14 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,11 @@ typedef struct	s_format
 typedef union	u_polymorphous_functions
 {
 	char		*(*function)(t_format *format, ...);
-	char		*(*c_specifier)(t_format *format, char c);
-	char		*(*s_specifier)(t_format *format, char *string);
-	char		*(*p_specifier)(t_format *format, void *pointer);
-	char		*(*i_specifier)(t_format *format, int i);
-	char		*(*perc_specifier)(t_format *format, ...);
+	char		*(*c_handler)(t_format *format, char c);
+	char		*(*s_handler)(t_format *format, char *string);
+	char		*(*p_handler)(t_format *format, void *pointer);
+	char		*(*i_handler)(t_format *format, int i);
+	char		*(*perc_handler)(t_format *format, ...);
 }				t_polymorphous_functions;
 
 #endif
