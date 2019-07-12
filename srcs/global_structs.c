@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 19:35:02 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/12 13:30:21 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/12 16:42:59 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,15 @@ enum	e_specifier
     SP_C    = 'c',
     SP_S    = 's',
     SP_P    = 'p',
-    SP_PERC = '%'
+    SP_PERC = '%',
 };
+
+#define ARG_SIZE_1 int
+#define ARG_SIZE_2 int
+#define ARG_SIZE_4 int
+#define ARG_SIZE_8 long long
+#define ARG_SIZE_9 double
+#define ARG_SIZE_16 long double
 
 int		g_type_table[N_SPECIFIERS][9] =
 {
@@ -38,6 +45,7 @@ int		g_type_table[N_SPECIFIERS][9] =
 	{SP_C,	INT,	-1,		-1,		-1,		-1,		-1},
 	{SP_S,	STR,	-1,		-1,		-1,		-1,		-1},
 	{SP_P,	VOID_P,	-1,		-1,		-1,		-1,		-1},
+	{SP_PERC, 0,	-1,		-1,		-1,		-1,		-1},
 	{0,		0,		0,		0,		0,		0,		0}
 };
 

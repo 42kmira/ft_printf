@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 11:17:49 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/12 14:08:22 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/12 16:36:23 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int			extract_flags(const char *format_string, size_t *index)
 	int		result;
 
 	i = 0;
+	result = 0;
 	while (g_flag_table[i][1] != NON_FLAG)
 	{
 		if (g_flag_table[i][0] == format_string[*index])
@@ -34,7 +35,7 @@ int			extract_flags(const char *format_string, size_t *index)
 	return (result);
 }
 
-int		extract_length(const char *format_string, size_t *index)
+int			extract_length(const char *format_string, size_t *index)
 {
 	*index = *index + 2;
 	if (format_string[*index - 2] == 'h' && format_string[*index - 1] == 'h')

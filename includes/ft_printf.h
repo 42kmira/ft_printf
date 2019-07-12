@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 18:09:42 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/12 14:12:09 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/12 16:19:26 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 # define FORMAT 0
 # define OUTPUT 1
 
-# define N_SPECIFIERS 11
+# define N_SPECIFIERS 12
 
 # define NULL_TERM 0
 
@@ -54,6 +54,7 @@ int			ft_printf(const char *format, ...);
 
 int		get_arguement_size(int specifier, int length);
 void	set_specifier_handler(t_polymorphous_functions *function, const char *specifier);
+char	*do_function(t_polymorphous_functions *function, int arguement_size, t_format *format, va_list args);
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
