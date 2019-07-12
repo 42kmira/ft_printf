@@ -6,7 +6,7 @@
 #    By: kmira <kmira@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/07 18:32:39 by kmira             #+#    #+#              #
-#    Updated: 2019/07/11 13:31:17 by kmira            ###   ########.fr        #
+#    Updated: 2019/07/11 21:44:53 by kmira            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,15 +17,17 @@ FLAGS = -Wall -Wextra -Werror
 INCLUDES = includes
 LIBRARY = libft/libft.a
 
-MAIN_FILES = \
-		conversion_parser \
-		global_structs \
-		main \
-
 CONVERSION_FILES = \
 		c_conversion \
 		p_conversion \
 		s_conversion
+
+MAIN_FILES = \
+		args_tools \
+		conversion_parser \
+		global_structs \
+		main \
+
 
 SRCS_PATH = $(MAIN_FILES)
 SRCS_PATH += $(addprefix conversions/, $(CONVERSION_FILES))
