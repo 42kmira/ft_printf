@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 19:02:30 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/13 12:46:52 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/13 13:14:47 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct	s_format
 typedef struct	s_string
 {
 	char		*output;
+	char		single[1];
 	int			length;
 	int			free;
 }				t_string;
