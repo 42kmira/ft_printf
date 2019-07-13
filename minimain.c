@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 18:25:33 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/12 14:06:35 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/12 20:34:42 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,13 @@ int syst_result;
 
 int	main(void)
 {
-	VERIFY("ONE TWO %s", "String");
+	// VERIFY("ONE TWO %s", "String");
 
-	VERIFY("Testing %% Three two one %%");
+	// VERIFY("Testing %% Three two one %%");
 
-	VERIFY("Length test %hhd", (char)5);
+	// VERIFY("Length test %hhd and another %d and for giggles %s", (char)5, 0, "' squiggles");
+
+	// VERIFY("STRING %s\n", "\0");
+
+	VERIFY("CHAR %c\n", '\0');
 }

@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 19:32:48 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/12 16:19:28 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/12 20:54:47 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,20 @@ int		get_arguement_size(int specifier, int length)
 
 void	set_specifier_handler(t_polymorphous_functions *function, const char *specifier)
 {
+	if (specifier[0] == 'c')
+		function->d_handler = d_handler;
 	if (specifier[0] == 's')
 		function->s_handler = s_handler;
+	if (specifier[0] == 'p')
+		function->p_handler = p_handler;
 	if (specifier[0] == 'd' || specifier[0] == 'i')
 		function->d_handler = d_handler;
+	if (specifier[0] == 'u')
+		function->u_handler = u_handler;
+	if (specifier[0] == 'x' || specifier[0] == 'X')
+		function->x_handler = x_handler;
+	if (specifier[0] == 'f')
+		function->f_handler = f_handler;
 	if (specifier[0] == '%')
 		function->perc_handler = perc_handler;
 }

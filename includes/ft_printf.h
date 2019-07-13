@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 18:09:42 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/12 16:19:26 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/12 20:52:12 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,13 @@ t_format	extract_format(const char *format_string, size_t *index);
 ** Directory that has the files to handle the different conversions.
 */
 
-char		*c_handler(t_format *format, char c);
-char		*d_handler(t_format *format, long long value);
-char		*p_handler(t_format *format, void *pointer);
-char		*perc_handler(t_format *format, ...);
+char		*c_handler(t_format *format, int c);
 char		*s_handler(t_format *format, char *string);
+char		*p_handler(t_format *format, void *pointer);
+char		*d_handler(t_format *format, long long value);
+char		*u_handler(t_format *format, unsigned long long value);
+char		*x_handler(t_format *format, unsigned long long value);
+char		*f_handler(t_format *format, long double value);
+char		*perc_handler(t_format *format, ...);
 
 #endif
