@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 14:32:09 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/10 10:22:02 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/13 12:50:28 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,14 @@
 # include <string.h>
 # include <unistd.h>
 # include <stdlib.h>
+
+# ifndef TRUE
+#  define TRUE 1
+# endif
+
+# ifndef FALSE
+#  define FALSE 0
+# endif
 
 /*
 ** PART I

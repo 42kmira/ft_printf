@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 19:02:30 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/12 20:54:21 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/13 12:46:52 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,17 +65,24 @@ typedef struct	s_format
 	const char	*specifier;
 }				t_format;
 
+typedef struct	s_string
+{
+	char		*output;
+	int			length;
+	int			free;
+}				t_string;
+
 typedef union	u_polymorphous_functions
 {
-	char		*(*function)(t_format *format, ...);
-	char		*(*c_handler)(t_format *format, int c);
-	char		*(*s_handler)(t_format *format, char *string);
-	char		*(*p_handler)(t_format *format, void *pointer);
-	char		*(*d_handler)(t_format *format, long long value);
-	char		*(*u_handler)(t_format *format, unsigned long long value);
-	char		*(*x_handler)(t_format *format, unsigned long long value);
-	char		*(*f_handler)(t_format *format, long double value);
-	char		*(*perc_handler)(t_format *format, ...);
+	t_string	(*function)(t_format *format, ...);
+	t_string	(*c_handler)(t_format *format, int c);
+	t_string	(*s_handler)(t_format *format, char *string);
+	t_string	(*p_handler)(t_format *format, void *pointer);
+	t_string	(*d_handler)(t_format *format, long long value);
+	t_string	(*u_handler)(t_format *format, unsigned long long value);
+	t_string	(*x_handler)(t_format *format, unsigned long long value);
+	t_string	(*f_handler)(t_format *format, long double value);
+	t_string	(*perc_handler)(t_format *format, ...);
 }				t_polymorphous_functions;
 
 #endif

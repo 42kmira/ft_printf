@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 19:32:48 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/12 20:54:47 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/13 13:05:23 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ extern int g_type_table[N_SPECIFIERS][9];
 
 #define SPECIFIER 0
 
-int		get_arguement_size(int specifier, int length)
+int			get_arguement_size(int specifier, int length)
 {
 	int i;
 
@@ -32,10 +32,10 @@ int		get_arguement_size(int specifier, int length)
 	return (-1);
 }
 
-void	set_specifier_handler(t_polymorphous_functions *function, const char *specifier)
+void		set_specifier_handler(t_polymorphous_functions *function, const char *specifier)
 {
 	if (specifier[0] == 'c')
-		function->d_handler = d_handler;
+		function->c_handler = c_handler;
 	if (specifier[0] == 's')
 		function->s_handler = s_handler;
 	if (specifier[0] == 'p')
@@ -66,7 +66,7 @@ void	set_specifier_handler(t_polymorphous_functions *function, const char *speci
 #define SIZE_9(x) if (x == 9) {return (function->function(format, ARG_SIZE_9));}
 #define SIZE_16(x) if (x == 16) {return (function->function(format, ARG_SIZE_16));}
 
-char	*do_function(t_polymorphous_functions *function, int arguement_size, t_format *format, va_list args)
+t_string	do_function(t_polymorphous_functions *function, int arguement_size, t_format *format, va_list args)
 {
 	SIZE_1(arguement_size);
 	SIZE_2(arguement_size);

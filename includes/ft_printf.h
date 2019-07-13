@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 18:09:42 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/12 20:52:12 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/13 12:46:00 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ int			ft_printf(const char *format, ...);
 ** Handles things dealing with va_args, like fetching size arguement
 */
 
-int		get_arguement_size(int specifier, int length);
-void	set_specifier_handler(t_polymorphous_functions *function, const char *specifier);
-char	*do_function(t_polymorphous_functions *function, int arguement_size, t_format *format, va_list args);
+int			get_arguement_size(int specifier, int length);
+void		set_specifier_handler(t_polymorphous_functions *function, const char *specifier);
+t_string	do_function(t_polymorphous_functions *function, int arguement_size, t_format *format, va_list args);
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
@@ -71,13 +71,13 @@ t_format	extract_format(const char *format_string, size_t *index);
 ** Directory that has the files to handle the different conversions.
 */
 
-char		*c_handler(t_format *format, int c);
-char		*s_handler(t_format *format, char *string);
-char		*p_handler(t_format *format, void *pointer);
-char		*d_handler(t_format *format, long long value);
-char		*u_handler(t_format *format, unsigned long long value);
-char		*x_handler(t_format *format, unsigned long long value);
-char		*f_handler(t_format *format, long double value);
-char		*perc_handler(t_format *format, ...);
+t_string	c_handler(t_format *format, int c);
+t_string	s_handler(t_format *format, char *string);
+t_string	p_handler(t_format *format, void *pointer);
+t_string	d_handler(t_format *format, long long value);
+t_string	u_handler(t_format *format, unsigned long long value);
+t_string	x_handler(t_format *format, unsigned long long value);
+t_string	f_handler(t_format *format, long double value);
+t_string	perc_handler(t_format *format, ...);
 
 #endif
