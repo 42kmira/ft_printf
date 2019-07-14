@@ -6,21 +6,39 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 10:55:44 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/13 13:14:49 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/13 18:56:50 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+/*
+** FLAGS:
+** 		VALID FLAGS: -
+** 			VALID FLAGS: 1/5
+** 		INVALID FLAGS: + #0
+** 			INVALID FLAGS: 4/5
+**
+** WIDTH:
+** 		Is always applicable.
+**
+** PRECISION:
+** 		Is not applicale.
+*/
+
 t_string	c_handler(t_format *format, int c)
 {
 	t_string	result;
 
-	result.output = result.single;
-	result.output[0] = c;
-	result.length = 1;
-	result.free = FALSE;
-	(void)format;
-	(void)c;
+	if (format->width == 0)
+		format->width = 1;
+	result.output = malloc(sizeof(*result.output) * (format->width));
+	ft_memset(result.output, ' ', format->width);
+	if (format->flags & MINUS_FLAG)
+		result.output[0] = c;
+	else
+		result.output[format->width - 1] = c;
+	result.length = format->width;
+	result.free = TRUE;
 	return (result);
 }

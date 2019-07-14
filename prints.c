@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 21:03:23 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/13 12:17:09 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/13 22:43:59 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,11 +125,63 @@ void	width_12_flag_zero(void){
 	printf("%012f\n", (float)42);
 	printf("%012%\n");
 }
+void	string_precision(void)
+{
+	printf(BOLDGREEN"STRINGS PRESICION"COLOR_RESET"\n");
+	printf("%.0s\n", NULL);
+	printf("%.0s\n", "\0");
+	printf("%.0s\n", "TEST");
+
+	printf("%.1s\n", NULL);
+	printf("%.1s\n", "\0");
+	printf("%.1s\n", "TEST");
+
+	printf("%.10s\n", "Test\0Hidden");
+	printf("%.5s\n", "Test\0Hidden");
+}
+void	string_precision_and_width(void){
+	printf(BOLDGREEN"STRINGS PRESICION and WIDTH"COLOR_RESET"\n");
+	printf("%1.0s\n", NULL);
+	printf("%1.0s\n", "\0");
+	printf("%1.0s\n", "TEST");
+
+	printf("%1.1s\n", NULL);
+	printf("%1.1s\n", "\0");
+	printf("%1.1s\n", "TEST");
+
+	printf("%1.10s\n", "Test\0Hidden");
+	printf("%1.5s\n", "Test\0Hidden");
+
+	printf("%10.0s\n", NULL);
+	printf("%10.0s\n", "\0");
+	printf("%10.0s\n", "TEST");
+
+	printf("%10.1s\n", NULL);
+	printf("%10.1s\n", "\0");
+	printf("%10.1s\n", "TEST");
+
+	printf("%10.10s\n", "Test\0Hidden");
+	printf("%10.5s\n", "Test\0Hidden");
+	printf("%10.5s\n", "Test when longer");
+}
+void	char_width(void)
+{
+	printf(BOLDGREEN"CHAR WIDTH"COLOR_RESET"\n");
+	printf("%1c\n", '*');
+
+}
+
+//Need to run test where I check for max width and how it handles certain cases for return and so on
 
 int	main(void)
 {
 	printf(BOLDBLUE"[[[[-__.-._-START-_.-.__-]]]]"COLOR_RESET"\n");
 
+	// width_12_flag_zero();
+	// string_precision();
+	// string_precision_and_width();
+	// char_width();
 
+	printf("%hhd", (char)128);
 	return (0);
 }
