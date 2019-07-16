@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 19:32:48 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/15 22:50:57 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/16 14:17:15 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int			get_arguement_size(int specifier, int length)
 	i = 0;
 	while (g_type_table[i][SPECIFIER] != NULL_TERM)
 	{
-		if (g_type_table[i][SPECIFIER] == specifier)
+		if (ft_tolower(g_type_table[i][SPECIFIER]) == specifier)
 			return (g_type_table[i][length]);
 		i++;
 	}

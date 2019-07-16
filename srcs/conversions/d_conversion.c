@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 13:57:38 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/16 00:13:48 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/16 14:13:59 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,50 +35,50 @@ void		print_binary(long long input)
 	printf("\n");
 }
 
-long long	signed_mask(int signed_bit)
-{
-	long long	mask;
-	int			i;
+// long long	signed_mask(int signed_bit)
+// {
+// 	long long	mask;
+// 	int			i;
 
-	i = 0;
-	mask = 0;
-	while (i < signed_bit)
-	{
-		mask = mask << 8;
-		mask = mask | 0b11111111;
-		i++;
-	}
-	return (mask);
-}
+// 	i = 0;
+// 	mask = 0;
+// 	while (i < signed_bit)
+// 	{
+// 		mask = mask << 8;
+// 		mask = mask | 0b11111111;
+// 		i++;
+// 	}
+// 	return (mask);
+// }
 
-char	*lltoa(unsigned long long value, int signed_bit)
-{
-	int			neg_sign;
-	int			i;
-	char		*result;
-	long long	mask;
+// char	*lltoa(unsigned long long value, int signed_bit, int length)
+// {
+// 	int			neg_sign;
+// 	int			i;
+// 	char		*result;
+// 	long long	mask;
 
-	result = malloc(sizeof(*result) * 21);
-	ft_bzero(result, 21);
-	mask = signed_mask(signed_bit);
-	neg_sign = (value & (1ULL << (signed_bit * 8 - 1))) ? 1 : 0;
-	if (neg_sign)
-	{
-		value = value * -1 - 1;
-		value = value & mask;
-		value = value + 1;
-	}
-	i = 0;
-	while (value > 0)
-	{
-		result[i] = value % 10 + '0';
-		value = value / 10;
-		i++;
-	}
-	if (neg_sign)
-		result[i] = '-';
-	return (ft_strrev(result));
-}
+// 	result = malloc(sizeof(*result) * 21);
+// 	ft_bzero(result, 21);
+// 	mask = signed_mask(length);
+// 	neg_sign = (value & (1ULL << (signed_bit * 8 - 1))) ? 1 : 0;
+// 	if (neg_sign)
+// 	{
+// 		value = value * -1 - 1;
+// 		value = value & mask;
+// 		value = value + 1;
+// 	}
+// 	i = 0;
+// 	while (value > 0)
+// 	{
+// 		result[i] = value % 10 + '0';
+// 		value = value / 10;
+// 		i++;
+// 	}
+// 	if (neg_sign)
+// 		result[i] = '-';
+// 	return (ft_strrev(result));
+// }
 
 /*
 ** FLAGS:
@@ -106,7 +106,7 @@ t_string	d_handler(t_format *format, long long value)
 	int			arg_size;
 
 	arg_size = get_arguement_size(format->specifier[0], format->length);
-	result.output = lltoa(value, arg_size);
+	result.output = ft_ntoa(value, arg_size, arg_size, NUM_SET, 10);
 	result.length = ft_strlen(result.output);
 	result.free = TRUE;
 	return (result);

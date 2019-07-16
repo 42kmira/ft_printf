@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 18:25:33 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/15 23:57:25 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/16 14:18:37 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,15 @@ int	main(void)
 {
 	// ft_printf("TEST: %c\n", '\0');
 	// VERIFY("TEST: %c", '\0');
-	VERIFY("ONE TWO %s", "String");
+	// VERIFY("ONE TWO %s", "String");
 	// VERIFY("Testing %% Three two one %%");
 
+	VERIFY("%u", 1);
+	VERIFY("%u", -1);
 
+	VERIFY("%lu", -533264L);
+
+	VERIFY("%x", 14);
 	// VERIFY("")
 	// VERIFY("This string is %p\n", (void *)1);
 

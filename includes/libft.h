@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 14:32:09 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/15 22:33:54 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/16 14:13:43 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@
 
 # ifndef FALSE
 #  define FALSE 0
+# endif
+
+# ifndef NUM_SET
+#  define NUM_SET "0123456789abcdef"
 # endif
 
 /*
@@ -120,5 +124,6 @@ int					ft_islower(int c);
 int					ft_isupper(int c);
 void				ft_puterror(char const *s);
 char				*ft_strrev(char *string);
+char				*ft_ntoa(unsigned long long value, int signed_bit, int length, char *symbols, size_t base);
 
 #endif
