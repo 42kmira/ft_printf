@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 21:03:23 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/13 22:43:59 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/16 13:40:18 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,96 @@ void	char_width(void)
 
 //Need to run test where I check for max width and how it handles certain cases for return and so on
 
-int	main(void)
+void	integer_test(void)
+{
+	printf(BOLDGREEN"INTEGER TEST"COLOR_RESET"\n");
+	printf("%d\n", 42);
+	printf("%-d\n", 42);
+	printf("%+d\n", 42);
+	printf("% d\n", 42);
+	printf("%0d\n", 42);
+
+	printf("%12d\n", 42);
+	printf("%-12d\n", 42);
+	printf("%+12d\n", 42);
+	printf("% 12d\n", 42);
+	printf("%012d\n", 42);
+
+	printf(BOLDGREEN"\nINTEGER TEST PRECISION"COLOR_RESET"\n");
+
+	printf("%.2d\n", 42);
+	printf("%-.2d\n", 42);
+	printf("%+.2d\n", 42);
+	printf("% .2d\n", 42);
+	printf("%0.2d\n", 42);
+	printf("\n");
+	printf("%.1d\n", 42);
+	printf("%-.1d\n", 42);
+	printf("%+.1d\n", 42);
+	printf("% .1d\n", 42);
+	printf("%0.1d\n", 42);
+	printf("\n");
+	printf("%.12d\n", 42);
+	printf("%-.12d\n", 42);
+	printf("%+.12d\n", 42);
+	printf("% .12d\n", 42);
+	printf("%0.12d\n", 42);
+	printf("\n");
+	printf("%.2d\n", 4200);
+	printf("%-.2d\n", 4200);
+	printf("%+.2d\n", 4200);
+	printf("% .2d\n", 4200);
+	printf("%0.2d\n", 4200);
+
+	printf(BOLDGREEN"\nINTEGER TEST PRECISION AND WIDTH"COLOR_RESET"\n");
+	printf("%7.12d\n", 42);
+	printf("%-7.12d\n", 42);
+	printf("%+7.12d\n", 42);
+	printf("% 7.12d\n", 42);
+	printf("%07.12d\n", 42);
+	printf("\n");
+	printf("%7.4d\n", 42);
+	printf("%-7.4d\n", 42);
+	printf("%+7.4d\n", 42);
+	printf("% 7.4d\n", 42);
+	printf("%07.4d\n", 42);
+	printf("\n");
+	printf("%7.4d\n", 420042);
+	printf("%-7.4d\n", 420042);
+	printf("%+7.4d\n", 420042);
+	printf("% 7.4d\n", 420042);
+	printf("%07.4d\n", 420042);
+	printf("\n");
+	printf("%4.7d\n", 420042);
+	printf("%-4.7d\n", 420042);
+	printf("%+4.7d\n", 420042);
+	printf("% 4.7d\n", 420042);
+	printf("%04.7d\n", 420042);
+	printf("\n");
+	printf("%4.3d\n", 420042);
+	printf("%-4.3d\n", 420042);
+	printf("%+4.3d\n", 420042);
+	printf("% 4.3d\n", 420042);
+	printf("%04.3d\n", 420042);
+}
+void	interger_test_zero(void)
+{
+	printf(BOLDGREEN"\nINTEGER TEST ZERO"COLOR_RESET"\n");
+	printf("%.0d\n", 0);
+	printf("%-.0d\n", 0);
+	printf("%+.0d\n", 0);
+	printf("% .0d\n", 0);
+	printf("%0.0d\n", 0);
+	printf("\n");
+	printf("%4.0d\n", 0);
+	printf("%-4.0d\n", 0);
+	printf("%+4.0d\n", 0);
+	printf("% 4.0d\n", 0);
+	printf("%04.0d\n", 0);
+}
+
+
+int		main(void)
 {
 	printf(BOLDBLUE"[[[[-__.-._-START-_.-.__-]]]]"COLOR_RESET"\n");
 
@@ -181,7 +270,7 @@ int	main(void)
 	// string_precision();
 	// string_precision_and_width();
 	// char_width();
-
-	printf("%hhd", (char)128);
+	// integer_test();
+	interger_test_zero();
 	return (0);
 }

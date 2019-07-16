@@ -1,24 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_conversion.c                                     :+:      :+:    :+:   */
+/*   ft_strrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/12 20:55:14 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/16 00:13:47 by kmira            ###   ########.fr       */
+/*   Created: 2019/07/15 22:17:51 by kmira             #+#    #+#             */
+/*   Updated: 2019/07/15 22:35:59 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-t_string	f_handler(t_format *format, long double value)
+char	*ft_strrev(char *string)
 {
-	t_string	result;
+	size_t	i;
+	size_t	j;
+	char	holder;
 
-	result.output = NULL;
-	result.free = FALSE;
-	(void)format;
-	(void)value;
-	return (result);
+	i = 0;
+	j = ft_strlen(string);
+	if (j != 0)
+		j--;
+	while (i < j)
+	{
+		holder = string[i];
+		string[i] = string[j];
+		string[j] = holder;
+		i++;
+		j--;
+	}
+	return (string);
 }

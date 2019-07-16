@@ -6,7 +6,7 @@
 #    By: kmira <kmira@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/07 18:32:39 by kmira             #+#    #+#              #
-#    Updated: 2019/07/12 20:58:05 by kmira            ###   ########.fr        #
+#    Updated: 2019/07/15 22:26:24 by kmira            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,7 @@ $(NAME): $(OBJS)
 $(LIBRARY):
 	make -C libft/
 
-$(OBJS):
+$(OBJS): $(LIBRARY)
 	@gcc $(FLAGS) -I$(INCLUDES) -c $(SRCS)
 
 clean:
@@ -66,7 +66,7 @@ clean:
 	@rm -f $(OBJS)
 
 fclean: clean
-	@make clean -C libft/
+	@make fclean -C libft/
 	@echo "$(RED)Removing ft_printf.a"
 	@rm -f $(NAME)
 

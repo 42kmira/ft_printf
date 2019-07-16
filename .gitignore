@@ -1,4 +1,5 @@
 *.o
+.vscode
 DOCS
 DOCS\*
 *.dSYM
