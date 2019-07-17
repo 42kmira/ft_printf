@@ -6,13 +6,13 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 17:58:44 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/16 17:59:03 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/16 20:26:49 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-t_string	x_handler(t_format *format, unsigned long long value)
+t_string	o_handler(t_format *format, unsigned long long value)
 {
 	t_string	result;
 	int			arg_size;

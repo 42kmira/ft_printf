@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 19:02:30 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/13 13:14:47 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/16 20:25:57 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ typedef union	u_polymorphous_functions
 	t_string	(*d_handler)(t_format *format, long long value);
 	t_string	(*u_handler)(t_format *format, unsigned long long value);
 	t_string	(*x_handler)(t_format *format, unsigned long long value);
+	t_string	(*o_handler)(t_format *format, unsigned long long value);
 	t_string	(*f_handler)(t_format *format, long double value);
 	t_string	(*perc_handler)(t_format *format, ...);
 }				t_polymorphous_functions;

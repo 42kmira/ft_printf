@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 18:25:33 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/16 14:42:07 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/16 21:51:28 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,25 @@ int	main(void)
 	// VERIFY("ONE TWO %s", "String");
 	// VERIFY("Testing %% Three two one %%");
 
-	VERIFY("%u", 1);
-	VERIFY("%u", -1);
+	// VERIFY("%u", 1);
+	// VERIFY("%u", -1);
 
-	VERIFY("%lu", -533264L);
+	// VERIFY("%lu", -533264L);
 
-	VERIFY("%x", 14);
+	// VERIFY("%x", 14);
 
-	VERIFY("%p", "Test");
+	// VERIFY("%p", "Test");
+
+	VERIFY("%#o\n", 42);
+	VERIFY("%#O\n", 42);
+	VERIFY("%#x\n", 42);
+	VERIFY("%#X\n", 42);
+
+	VERIFY("%#o\n", -1);
+	VERIFY("%#O\n", -1);
+	VERIFY("%#x\n", -1);
+	VERIFY("%#X\n", -1);
+
 	// VERIFY("")
 	// VERIFY("This string is %p\n", (void *)1);
 

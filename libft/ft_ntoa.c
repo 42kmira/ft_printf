@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 13:47:07 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/16 14:32:04 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/16 21:43:56 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,17 @@ long long	signed_mask(int signed_bit)
 	return (mask);
 }
 
-char		*ft_ntoa(unsigned long long value, int signed_bit, int length, char *symbols, size_t base)
+/*
+** Needs a greater malloc size for different types of bases.
+** Octal needs a bigger size to be able to print out max int
+*/
+
+char		*ft_ntoa(uintmax_t value, int signed_bit, int length, char *symbols, size_t base)
 {
 	int			neg_sign;
 	int			i;
 	char		*result;
-	long long	mask;
+	uintmax_t	mask;
 
 	result = malloc(sizeof(*result) * 21);
 	ft_bzero(result, 21);
@@ -85,3 +90,26 @@ char		*ft_ntoa(unsigned long long value, int signed_bit, int length, char *symbo
 		result[i] = '-';
 	return (ft_strrev(result));
 }
+
+// char		*itoa_base(long long int num, int base, int flag)
+// {
+// 	char			alloc[50];
+// 	char			*res;
+// 	int				i;
+// 	int				neg;
+
+// 	neg = 1;
+// 	res = (flag == 0) ? "0123456789abcdef" : "0123456789ABCDEF";
+// 	if (num == 0)
+// 		return (ft_strdup("0"));
+// 	i = 48;
+// 	alloc[49] = '\0';
+// 	if (num < 0)
+// 		neg = -1;
+// 	while (num != 0)
+// 	{
+// 		alloc[i--] = res[neg * (num % base)];
+// 		num /= base;
+// 	}
+// 	return (ft_strdup(&(alloc[++i])));
+// }

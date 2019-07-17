@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 19:32:48 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/16 18:08:25 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/16 20:30:40 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int			get_arguement_size(int specifier, int length)
 	i = 0;
 	while (g_type_table[i][SPECIFIER] != NULL_TERM)
 	{
-		if (ft_tolower(g_type_table[i][SPECIFIER]) == specifier)
+		if (g_type_table[i][SPECIFIER] == ft_tolower(specifier))
 			return (g_type_table[i][length]);
 		i++;
 	}
@@ -48,6 +48,8 @@ void		set_specifier_handler(t_polymorphous_functions *function, const char *spec
 		function->u_handler = u_handler;
 	if (specifier[0] == 'x' || specifier[0] == 'X')
 		function->x_handler = x_handler;
+	if (specifier[0] == 'o' || specifier[0] == 'O')
+		function->o_handler = o_handler;
 	if (specifier[0] == 'f')
 		function->f_handler = f_handler;
 	if (specifier[0] == '%')

@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 18:09:42 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/16 18:08:42 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/16 20:25:41 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ t_string	d_handler(t_format *format, long long value);
 t_string	i_handler(t_format *format, long long value);
 t_string	u_handler(t_format *format, unsigned long long value);
 t_string	x_handler(t_format *format, unsigned long long value);
+t_string	o_handler(t_format *format, unsigned long long value);
 t_string	f_handler(t_format *format, long double value);
 t_string	perc_handler(t_format *format, ...);
 

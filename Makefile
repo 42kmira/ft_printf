@@ -6,7 +6,7 @@
 #    By: kmira <kmira@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/07 18:32:39 by kmira             #+#    #+#              #
-#    Updated: 2019/07/16 18:09:08 by kmira            ###   ########.fr        #
+#    Updated: 2019/07/16 20:26:22 by kmira            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ CONVERSION_FILES = \
 		d_conversion \
 		f_conversion \
 		i_conversion \
+		o_conversion \
 		p_conversion \
 		perc_conversion \
 		s_conversion \
