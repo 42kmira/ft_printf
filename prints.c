@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 21:03:23 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/16 13:40:18 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/16 17:36:38 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -261,7 +261,6 @@ void	interger_test_zero(void)
 	printf("%04.0d\n", 0);
 }
 
-
 int		main(void)
 {
 	printf(BOLDBLUE"[[[[-__.-._-START-_.-.__-]]]]"COLOR_RESET"\n");
@@ -271,6 +270,10 @@ int		main(void)
 	// string_precision_and_width();
 	// char_width();
 	// integer_test();
-	interger_test_zero();
+	// interger_test_zero();
+
+	printf("%p\n", (void *)-1);
+
+	printf("TEST%12hhd\n", 10001000);
 	return (0);
 }

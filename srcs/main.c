@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 17:59:46 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/13 15:27:24 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/16 15:00:53 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,6 @@ int		ft_printf(const char *format, ...)
 		if (format[i] == '%')
 			result += convert(format, &i, args);
 	}
+	va_end(args);
 	return (result);
 }
