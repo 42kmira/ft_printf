@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 19:32:48 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/16 14:17:15 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/16 18:08:25 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,10 @@ void		set_specifier_handler(t_polymorphous_functions *function, const char *spec
 		function->s_handler = s_handler;
 	if (specifier[0] == 'p')
 		function->p_handler = p_handler;
-	if (specifier[0] == 'd' || specifier[0] == 'i')
+	if (specifier[0] == 'd')
 		function->d_handler = d_handler;
+	if (specifier[0] == 'i')
+		function->d_handler = i_handler;
 	if (specifier[0] == 'u')
 		function->u_handler = u_handler;
 	if (specifier[0] == 'x' || specifier[0] == 'X')
