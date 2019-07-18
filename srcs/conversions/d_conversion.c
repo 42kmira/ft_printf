@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 13:57:38 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/17 12:04:50 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/17 17:58:48 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,11 @@ t_string	d_handler(t_format *format, long long value)
 	result.output = ft_ntoa(value, arg_size, arg_size, NUM_SET, 10);
 	result.length = ft_strlen(result.output);
 	result.free = TRUE;
+
+	t_string	formatted;
+	formatted = apply_flags(format, &result);
+
+	result.output = formatted.output;
+	result.length = ft_strlen(formatted.output);
 	return (result);
 }

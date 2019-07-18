@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 11:17:49 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/17 12:04:34 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/17 12:21:38 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,10 @@ int			extract_precision(const char *format_string, size_t *index)
 	{
 		*index = *index + 1;
 		result = extract_number(format_string, index);
+		return (result);
 	}
-	return (result);
+	else
+		return (-1);
 }
 
 int			extract_length(const char *format_string, size_t *index)

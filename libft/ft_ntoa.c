@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 13:47:07 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/17 12:04:31 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/17 21:09:03 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ char		*ft_ntoa(uintmax_t value, int signed_bit, int length, char *symbols, size_
 		}
 	}
 	i = 0;
+	if (value == 0)
+		result[0] = '0';
 	while (value > 0)
 	{
 		result[i] = symbols[value % base];

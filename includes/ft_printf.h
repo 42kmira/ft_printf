@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 18:09:42 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/16 20:25:41 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/17 17:29:02 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,19 @@ t_string	do_function(t_polymorphous_functions *function, int arguement_size, t_f
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
 ** FILE: conversion_parser.c
-** Deals with extracting and parsing the modifiers and specifier into struct t_format
-** from a given string.
+** Deals with extracting and parsing the modifiers and specifier into struct
+** t_format from a given string.
 */
 
 t_format	extract_format(const char *format_string, size_t *index);
+
+/*
+** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
+** FILE: apply_flags.c
+** Uses the flags in the struct t_format.
+*/
+
+t_string	apply_flags(t_format *format, t_string *str);
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
@@ -81,5 +89,6 @@ t_string	x_handler(t_format *format, unsigned long long value);
 t_string	o_handler(t_format *format, unsigned long long value);
 t_string	f_handler(t_format *format, long double value);
 t_string	perc_handler(t_format *format, ...);
+
 
 #endif
