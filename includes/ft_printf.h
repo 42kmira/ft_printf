@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 18:09:42 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/17 17:29:02 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/18 14:28:53 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ t_format	extract_format(const char *format_string, size_t *index);
 ** Uses the flags in the struct t_format.
 */
 
-t_string	apply_flags(t_format *format, t_string *str);
+// t_string	apply_flags(t_format *format, t_string *str);
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-

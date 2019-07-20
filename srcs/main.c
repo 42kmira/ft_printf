@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 17:59:46 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/16 15:00:53 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/19 12:29:34 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 int		convert(const char *format, size_t *index, va_list args)
 {
+	t_string					converted_string;
 	t_format					formatter;
 	t_polymorphous_functions	function;
 	int							arguement_size;
-	t_string					converted_string;
 
 	if (format[*index] == '%')
 		*index = *index + 1;
@@ -29,6 +29,7 @@ int		convert(const char *format, size_t *index, va_list args)
 	converted_string = do_function(&function, arguement_size, &formatter, args);
 	write(1, converted_string.output, converted_string.length);
 	*index = *index + 1;
+
 	return (converted_string.length);
 }
 
