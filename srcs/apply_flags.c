@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/17 16:03:10 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/20 14:41:06 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/20 15:02:19 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,10 +146,13 @@ t_string	apply_flags(t_format *format, long long value)
 		else if (format->flags & SPACE_FLAG)
 			result.output = append(" ", result.output);
 
-		if (format->flags & HASH_FLAG && (format->specifier[0] == 'o' || format->specifier[0] == 'O'))
-			result.output = append("0", result.output);
-		if (format->flags & HASH_FLAG && (format->specifier[0] == 'x' || format->specifier[0] == 'X'))
-			result.output = append("0x", result.output);
+		if (value > 0)
+		{
+			if (format->flags & HASH_FLAG && (format->specifier[0] == 'o' || format->specifier[0] == 'O'))
+				result.output = append("0", result.output);
+			else if (format->flags & HASH_FLAG && (format->specifier[0] == 'x' || format->specifier[0] == 'X'))
+				result.output = append("0x", result.output);
+		}
 		result.length = ft_strlen(result.output);
 	}
 	char *padding;
@@ -172,6 +175,11 @@ t_string	apply_flags(t_format *format, long long value)
 			result.output[0] = '+';
 		else if (format->flags & SPACE_FLAG)
 			result.output[0] = ' ';
+
+		if (format->flags & HASH_FLAG && (format->specifier[0] == 'o' || format->specifier[0] == 'O'))
+			result.output = append("0", result.output);
+		if (format->flags & HASH_FLAG && (format->specifier[0] == 'x' || format->specifier[0] == 'X'))
+			result.output = append("0x", result.output);
 	}
 	return (result);
 }

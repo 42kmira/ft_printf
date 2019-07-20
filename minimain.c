@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 18:25:33 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/19 17:45:53 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/20 15:00:09 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,9 +105,9 @@ int	main(void)
 	// VERIFY("INT %#0+5o", 4200);
 	// VERIFY("INT %#0+10o", -4200);
 
-	VERIFY("INT %.1o", 42);
-	VERIFY("INT %.2o", 42);
-	VERIFY("INT %.3o", 42);
+	// VERIFY("INT %.1o", 42);
+	// VERIFY("INT %.2o", 42);
+	// VERIFY("INT %.3o", 42);
 	// VERIFY("INT % -.8o", 42);
 
 	// VERIFY(BLUE"INT % 03o"COLOR_RESET, 0);
@@ -118,7 +118,7 @@ int	main(void)
 
 	// VERIFY("INT %+5.3o", -42);
 
-	printf(BLUE"NEW TEST\n\n"COLOR_RESET);
+	// printf(BLUE"NEW TEST\n\n"COLOR_RESET);
 
 	// VERIFY("INT %+.1o", 42);
 	// VERIFY("INT %+.2o", 42);
@@ -133,9 +133,11 @@ int	main(void)
 
 	// VERIFY("INT % 5o", 42);
 
-	VERIFY("INT %o", 0);
+	// VERIFY("INT %o", 0);
 
-	VERIFY("INT %o", 0);
+	// VERIFY("INT %o", 0);
 
-	VERIFY("INT %-.10hho", (char)128);
+	// VERIFY("INT %-.10hho", (char)128);
+
+	VERIFY("%#o", 0);
 }
