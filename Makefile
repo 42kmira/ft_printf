@@ -6,13 +6,13 @@
 #    By: kmira <kmira@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/07 18:32:39 by kmira             #+#    #+#              #
-#    Updated: 2019/07/19 09:20:17 by kmira            ###   ########.fr        #
+#    Updated: 2019/07/20 14:40:46 by kmira            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ft_printf.a
+NAME = libftprintf.a
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -O2
 
 INCLUDES = includes
 LIBRARY = libft/libft.a
@@ -30,10 +30,12 @@ CONVERSION_FILES = \
 		x_conversion
 
 MAIN_FILES = \
+		apply_flags \
 		args_tools \
 		conversion_parser \
 		global_structs \
 		main \
+		utils \
 
 
 SRCS_PATH = $(MAIN_FILES)

@@ -6,78 +6,172 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/17 16:03:10 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/18 13:50:32 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/20 14:41:06 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-// t_string	apply_flags(t_format *format, t_string *str)
-// {
-// 	char	sign;
+uintmax_t	signed_mask_p(int signed_bit)
+{
+	long long	mask;
+	int			i;
 
-// 	if (str[0] || )
-// }
+	i = 0;
+	mask = 0;
+	while (i < signed_bit)
+	{
+		mask = mask << 8;
+		mask = mask | 0b11111111;
+		i++;
+	}
+	return (mask);
+}
 
+void	make_number(uintmax_t number, char *symbols, size_t base, t_string *dst)
+{
+	size_t	i;
 
-// t_string	apply_flags(t_format *format, t_string *str)
-// {
-// 	char		buffer[50];
-// 	t_string	output;
-// 	char		pad_char;
-// 	char		*cpy_start;
+	i = 0;
+	if (number == 0)
+		dst->output[i] = '0';
+	while (number > 0)
+	{
+		dst->output[i] = symbols[number % base];
+		number = number / base;
+		i++;
+	}
+}
 
-// 	output.length = 0;
-// 	if (format->precision >= 0)
-// 	{
-// 		output.length = format->precision;
-// 		format->flags = format->flags & ~ZERO_FLAG;
-// 	}
-// 	if (format->flags & ZERO_FLAG || format->flags & PLUS_FLAG || format->flags & SPACE_FLAG)
-// 		output.length = output.length + 1;
-// 	if (format->width > output.length)
-// 		output.length = format->width;
-// 	if (str->length > output.length)
-// 		output.length = str->length;
+void	precision_padding(t_format *format, t_string *dst)
+{
+	size_t	length;
 
+	if (format->precision > (int)sizeof(uintmax_t) * 8)
+		length = format->precision + 1;
+	else
+		length = sizeof(uintmax_t) * 8 + 1;
+	dst->output = malloc(sizeof(*(dst->output)) * (length));
+	ft_bzero(dst->output, length);
+	dst->free = TRUE;
+	if (format->precision > 0)
+		ft_memset(dst->output, '0', format->precision);
+}
 
-// 	output.output = malloc(sizeof(*(output.output)) * (output.length + 1));
-// 	output.output[output.length] = '\0';
+uintmax_t	correct_number(uintmax_t value, int signed_bit, int length, int *sign)
+{
+	uintmax_t	mask;
 
+	*sign = 0;
+	mask = signed_mask_p(length);
+	if (signed_bit != 0)
+	{
+		*sign = (value & (1ULL << (signed_bit * 8 - 1))) ? 1 : 0;
+		if (*sign)
+		{
+			value = value * -1 - 1;
+			value = value + 1;
+		}
+	}
+	value = value & mask;
+	return (value);
+}
 
-// 	pad_char = ' ';
-// 	if (format->flags & ZERO_FLAG && format->precision == -1 && format->flags & ~MINUS_FLAG)
-// 		pad_char = '0';
-// 	ft_memset(output.output, pad_char, output.length);
-// 	if (format->flags & SPACE_FLAG)
-// 		output.output[0] = ' ';
-// 	if (format->flags & PLUS_FLAG && str->output[0] != '-')
-// 		output.output[0] = '+';
-// 	if (output.output[0] != pad_char)
-// 		output.output = output.output + 1;
+void		override_flags(t_format *format)
+{
+	if (format->precision != -1 || format->flags & MINUS_FLAG)
+		format->flags = format->flags & ~ZERO_FLAG;
+	if (format->flags & PLUS_FLAG)
+		format->flags = format->flags & ~SPACE_FLAG;
+}
 
-// 	ft_bzero(buffer, sizeof(buffer));
-// 	if (format->precision > 0)
-// 		ft_memset(&buffer[1], '0', format->precision);
-// 	if (format->precision > str->length)
-// 		ft_strcpy(&buffer[1 + (format->precision - str->length)], str->output);
-// 	else
-// 		ft_strcpy(&buffer[1], str->output);
-// 	cpy_start = &buffer[1];
-// 	if (buffer[0] != '\0')
-// 		cpy_start = &buffer[0];
+char	*combine_padding(char *padding, char *string, int left_align)
+{
+	size_t	length_a;
+	size_t	length_b;
+	size_t	i;
+	size_t	offset;
 
-// 	if (format->flags & MINUS_FLAG)
-// 	{
-// 		// printf("HERE\n");
-// 		ft_strncpy(output.output, cpy_start, ft_strlen(cpy_start));
-// 	}
-// 	else
-// 	{
-// 		// printf("THERE\n");
-// 		ft_strncpy(output.output + (output.length - ft_strlen(cpy_start) + 1), cpy_start, ft_strlen(cpy_start));
-// 	}
-// 	// printf("\nOUTY: %s\n", cpy_start);
-// 	// printf("LAST: %s\n", output.output);
-// 	return (output);
-// }
+	length_a = ft_strlen(padding);
+	length_b = ft_strlen(string);
+	if (length_a > length_b)
+	{
+		i = 0;
+		offset = (length_a - length_b);
+		if (left_align)
+			offset = 0;
+		while (i < length_b)
+		{
+			padding[i + offset] = string[i];
+			i++;
+		}
+		return (padding);
+	}
+	return (string);
+}
+
+t_string	apply_flags(t_format *format, long long value)
+{
+	t_string	result;
+	int			arg_size;
+	int			sign;
+	int			base;
+	int			length;
+
+	arg_size = get_arguement_size(format->specifier[0], format->length);
+	length = 0;
+	if (format->specifier[0] == 'o' || format->specifier[0] == 'O')
+		base = 8;
+	else if (format->specifier[0] == 'x' || format->specifier[0] == 'X' || format->specifier[0] == 'p')
+		base = 16;
+	else
+	{
+		base = 10;
+		length = arg_size;
+	}
+	precision_padding(format, &result);
+	value = correct_number(value, length, arg_size, &sign);
+	make_number(value, NUM_SET, base, &result);
+	ft_strrev(result.output);
+	if (format->precision == 0 && value == 0)
+		result.output[0] = '\0';
+	result.length = ft_strlen(result.output);
+	override_flags(format);
+	if (!(format->flags & ZERO_FLAG) || format->width - 1 <= result.length)
+	{
+		if (sign)
+			result.output = append("-", result.output);
+		else if (format->flags & PLUS_FLAG)
+			result.output = append("+", result.output);
+		else if (format->flags & SPACE_FLAG)
+			result.output = append(" ", result.output);
+
+		if (format->flags & HASH_FLAG && (format->specifier[0] == 'o' || format->specifier[0] == 'O'))
+			result.output = append("0", result.output);
+		if (format->flags & HASH_FLAG && (format->specifier[0] == 'x' || format->specifier[0] == 'X'))
+			result.output = append("0x", result.output);
+		result.length = ft_strlen(result.output);
+	}
+	char *padding;
+	padding = malloc(sizeof(*padding) * (format->width + 1));
+	ft_bzero(padding, format->width + 1);
+	if (format->flags & ZERO_FLAG)
+		ft_memset(padding, '0', format->width);
+	else
+		ft_memset(padding, ' ', format->width);
+	int minus;
+	minus = 0;
+	if (format->flags & MINUS_FLAG)
+		minus = 1;
+	result.output = combine_padding(padding, result.output, minus);
+	if (format->flags & ZERO_FLAG)
+	{
+		if (sign)
+			result.output[0] = '-';
+		else if (format->flags & PLUS_FLAG)
+			result.output[0] = '+';
+		else if (format->flags & SPACE_FLAG)
+			result.output[0] = ' ';
+	}
+	return (result);
+}

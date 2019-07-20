@@ -6,12 +6,12 @@
 #    By: kmira <kmira@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/12 11:40:08 by kmira             #+#    #+#              #
-#    Updated: 2019/07/16 14:00:34 by kmira            ###   ########.fr        #
+#    Updated: 2019/07/19 17:09:12 by kmira            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= libft.a
-FLAGS	= -Wall -Werror -Wextra -c
+FLAGS	= -Wall -Werror -Wextra -c -O2
 FUNCS	=	atoi \
 			bzero \
 			isalnum \

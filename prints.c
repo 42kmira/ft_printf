@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 21:03:23 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/17 15:53:07 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/20 14:15:05 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -272,9 +272,9 @@ int		main(void)
 	// integer_test();
 	// interger_test_zero();
 
-	printf("%p\n", (void *)-1);
+	// printf("%p\n", (void *)-1);
 
-	printf("TEST%12d\n", 10001000);
+	// printf("TEST%12d\n", 10001000);
 
 	// printf("%#o\n", 42);
 	// printf("%#O\n", 42);
@@ -286,7 +286,7 @@ int		main(void)
 	// printf("%#x\n", -1);
 	// printf("%#X\n", -1);
 
-	printf("%+07.5d\n", 512);
+	printf("%-05\n");
 
 	return (0);
 }

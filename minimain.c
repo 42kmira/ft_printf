@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 18:25:33 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/19 16:09:04 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/19 17:45:53 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,79 +59,83 @@ int	main(void)
 
 
 
-	// VERIFY("INT %0d", 4200);
-	// VERIFY("INT %1d", 4200);
-	// VERIFY("INT %2d", 4200);
-	// VERIFY("INT %5d", 4200);
-	// VERIFY("INT %7d", 4200);
-	// VERIFY("INT %9d", 4200);
+	// VERIFY("INT %#0o", 4200);
+	// VERIFY("INT %#1o", 4200);
+	// VERIFY("INT %#2o", 4200);
+	// VERIFY("INT %#5o", 4200);
+	// VERIFY("INT %#7o", 4200);
+	// VERIFY("INT %#9o", 4200);
 
 	// printf(BLUE"CHANGE TEST"COLOR_RESET"\n");
-	// VERIFY("INT %00d", 4200);
-	// VERIFY("INT %01d", 4200);
-	// VERIFY("INT %02d", 4200);
-	// VERIFY("INT %05d", 4200);
-	// VERIFY("INT %07d", 4200);
-	// VERIFY("INT %09d", 4200);
+	// VERIFY("INT %#00o", 4200);
+	// VERIFY("INT %#01o", 4200);
+	// VERIFY("INT %#02o", 4200);
+	// VERIFY("INT %#05o", 4200);
+	// VERIFY("INT %#07o", 4200);
+	// VERIFY("INT %#09o", 4200);
 
 	// printf(BLUE"CHANGE TEST"COLOR_RESET"\n");
-	// VERIFY("INT %00.5d", 4200);
-	// VERIFY("INT %01.5d", 4200);
-	// VERIFY("INT %02.5d", 4200);
-	// VERIFY("INT %05.5d", 4200);
-	// VERIFY("INT %07.5d", 4200);
-	// VERIFY("INT %09.5d", 4200);
+	// VERIFY("INT %#00.5o", 4200);
+	// VERIFY("INT %#01.5o", 4200);
+	// VERIFY("INT %#02.5o", 4200);
+	// VERIFY("INT %#05.5o", 4200);
+	// VERIFY("INT %#07.5o", 4200);
+	// VERIFY("INT %#09.5o", 4200);
 
 	// printf(BLUE"CHANGE TEST"COLOR_RESET"\n");
-	// VERIFY("INT %0.5d", 4200);
-	// VERIFY("INT %1.5d", 4200);
-	// VERIFY("INT %2.5d", 4200);
-	// VERIFY("INT %5.5d", 4200);
-	// VERIFY("INT %7.5d", 4200);
-	// VERIFY("INT %9.5d", 4200);
+	// VERIFY("INT %#0.5o", 4200);
+	// VERIFY("INT %#1.5o", 4200);
+	// VERIFY("INT %#2.5o", 4200);
+	// VERIFY("INT %#5.5o", 4200);
+	// VERIFY("INT %#7.5o", 4200);
+	// VERIFY("INT %#9.5o", 4200);
 
 	// printf(BLUE"CHANGE TEST"COLOR_RESET"\n");
-	// VERIFY("INT % 0.5d", 4200);
-	// VERIFY("INT % 1.5d", 4200);
-	// VERIFY("INT % 2.5d", 4200);
-	// VERIFY("INT % 5.5d", 4200);
-	// VERIFY("INT % 7.5d", 4200);
-	// VERIFY("INT % 9.5d", 4200);
+	// VERIFY("INT %#0.5o", 4200);
+	// VERIFY("INT %#1.5o", 4200);
+	// VERIFY("INT %#2.5o", 4200);
+	// VERIFY("INT %#5.5o", 4200);
+	// VERIFY("INT %#7.5o", 4200);
+	// VERIFY("INT %#9.5o", 4200);
 
-	// VERIFY("INT %0+d", 4200);
-	// VERIFY("INT %0+1d", 4200);
-	// VERIFY("INT %0+2d", 4200);
-	// VERIFY("INT %0+4d", 4200);
-	// VERIFY("INT %0+5d", 4200);
-	// VERIFY("INT %0+10d", -4200);
+	// VERIFY("INT %#0+o", 4200);
+	// VERIFY("INT %#0+1o", 4200);
+	// VERIFY("INT %#0+2o", 4200);
+	// VERIFY("INT %#0+4o", 4200);
+	// VERIFY("INT %#0+5o", 4200);
+	// VERIFY("INT %#0+10o", -4200);
 
-	// VERIFY("INT %.1d", 42);
-	// VERIFY("INT %.2d", 42);
-	// VERIFY("INT %.3d", 42);
-	// VERIFY("INT % -.8d", 42);
+	VERIFY("INT %.1o", 42);
+	VERIFY("INT %.2o", 42);
+	VERIFY("INT %.3o", 42);
+	// VERIFY("INT % -.8o", 42);
 
-	// VERIFY(BLUE"INT % 03d"COLOR_RESET, 0);
+	// VERIFY(BLUE"INT % 03o"COLOR_RESET, 0);
 
-	// VERIFY("INT %-.1d", -42);
-	// VERIFY("INT %-.2d", -42);
-	// VERIFY("INT % -5.3d", -42);
+	// VERIFY("INT %-.1o", -42);
+	// VERIFY("INT %-.2o", -42);
+	// VERIFY("INT % -5.3o", -42);
 
-	// VERIFY("INT %+5.3d", -42);
+	// VERIFY("INT %+5.3o", -42);
 
-	// printf(BLUE"NEW TEST\n\n"COLOR_RESET);
+	printf(BLUE"NEW TEST\n\n"COLOR_RESET);
 
-	// VERIFY("INT %+.1d", 42);
-	// VERIFY("INT %+.2d", 42);
-	// VERIFY("INT %+.3d", 42);
-	// VERIFY("INT %+-.8d", 42);
+	// VERIFY("INT %+.1o", 42);
+	// VERIFY("INT %+.2o", 42);
+	// VERIFY("INT %+.3o", 42);
+	// VERIFY("INT %+-.8o", 42);
 
-	// VERIFY(BLUE"INT %+03d"COLOR_RESET, 0);
+	// VERIFY(BLUE"INT %+03o"COLOR_RESET, 0);
 
-	// VERIFY("INT %+-.1d", -42);
-	// VERIFY("INT %+-.2d", -42);
-	// VERIFY("INT %+-5.3d", -42);
+	// VERIFY("INT %+-.1o", -42);
+	// VERIFY("INT %+-.2o", -42);
+	// VERIFY("INT %+-5.3o", -42);
 
-	// VERIFY("INT % 5d", 42);
+	// VERIFY("INT % 5o", 42);
 
-	VERIFY("INT %d", 0);
+	VERIFY("INT %o", 0);
+
+	VERIFY("INT %o", 0);
+
+	VERIFY("INT %-.10hho", (char)128);
 }

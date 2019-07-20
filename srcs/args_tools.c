@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 19:32:48 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/17 12:04:43 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/20 14:25:24 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int			get_arguement_size(int specifier, int length)
 		i++;
 	}
 	if (g_type_table[i][SPECIFIER] == NULL_TERM)
-		EXIT(RED"Could not find this specifier");
+		write(1, RED"SPECIFIER does not exist\n"COLOR_RESET, 32);
 	return (-1);
 }
 

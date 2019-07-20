@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 20:57:02 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/17 12:04:56 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/20 14:51:24 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@ t_string	x_handler(t_format *format, unsigned long long value)
 	int			arg_size;
 
 	arg_size = get_arguement_size(format->specifier[0], format->length);
-	result.output = ft_ntoa(value, 0, arg_size, NUM_SET, 16);
+	result = apply_flags(format, value);
+	if (format->specifier[0] == 'X')
+		upper_case_string(result.output);
 	result.length = ft_strlen(result.output);
 	result.free = TRUE;
 	return (result);

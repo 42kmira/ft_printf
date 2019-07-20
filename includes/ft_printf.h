@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 18:09:42 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/18 14:28:53 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/20 14:49:15 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,16 @@ t_format	extract_format(const char *format_string, size_t *index);
 ** Uses the flags in the struct t_format.
 */
 
-// t_string	apply_flags(t_format *format, t_string *str);
+t_string	apply_flags(t_format *format, long long value);
+
+/*
+** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
+** DIRECTORY: conversions
+** Directory that has the files to handle the different conversions.
+*/
+
+char		*append(char *a, char *b);
+void	upper_case_string(char *string);
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
