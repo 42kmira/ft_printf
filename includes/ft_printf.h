@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 18:09:42 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/22 16:37:43 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/23 15:12:39 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ t_format	extract_format(const char *format_string, size_t *index);
 */
 
 t_string	apply_flags(t_format *format, long long value);
+void		make_number(uintmax_t number, char *symbols, size_t base, t_string *dst);
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-

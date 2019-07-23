@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 18:25:33 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/23 14:45:54 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/23 15:08:50 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,13 +145,12 @@ int	main(void)
 	// VERIFY("%Lf", (long double)-1);
 	// printf("SIZE: %zu\n", sizeof(double));
 
-	VERIFY("%Lf", (long double)-1);
-	VERIFY("%Lf", (long double)-10);
-	VERIFY("%Lf", (long double)-.1);
-	VERIFY("%Lf", (long double)-.00001);
-	VERIFY("%Lf", (long double)-2341);
-	VERIFY("%Lf", (long double)-14312341);
-	VERIFY("%Lf", (long double)-341351);
-	VERIFY("%Lf", (long double)-135235.41234123);
-	VERIFY("%f", (double)0);
+	VERIFY("%f", (double)-1);
+	VERIFY("%f", (double)-10);
+	VERIFY("%f", (double)-.1);
+	VERIFY("%f", (double)-.00001);
+	VERIFY("%f", (double)-2341);
+	VERIFY("%f", (double)-14312341);
+	VERIFY("%f", (double)-341351);
+	VERIFY("%f", (double)-135235.41234123);
 }

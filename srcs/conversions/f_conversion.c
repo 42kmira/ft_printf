@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 20:55:14 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/23 14:46:13 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/23 15:15:57 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,22 +47,28 @@ void		precision(t_format *format, long double value)
 	union u_ieee2bits	bits;
 	int					sign;
 
-
+	long long num;
 	if (format->length != XL)
 	{
 		bits.double_.type = value;
 		sign = bits.double_.bits.sign;
+		num = bits.double_.type;
 	}
 	else
 	{
 		bits.long_double_.type = value;
 		sign = bits.long_double_.bits.sign;
+		num = bits.long_double_.type;
 	}
 
 	if (sign)
 		printf("NEG Number\n");
 	else
 		printf("POS Number\n");
+
+	t_string	string;
+	string.output = malloc(sizeof(*(string.output)) * (54));
+	make_number(num, "0123456789", 10, &string);
 
 	(void)format;
 }
@@ -71,11 +77,12 @@ t_string	f_handler_double(t_format *format, double value)
 {
 	t_string	result;
 
-	result.output = "";
+	result.output = "Float: ";
 	result.length = 7;
 	result.free = FALSE;
 
 	precision(format, value);
+
 
 	(void)format;
 	(void)value;
@@ -86,7 +93,7 @@ t_string	f_handler_long(t_format *format, long double value)
 {
 	t_string	result;
 
-	result.output = "FLOAT: ";
+	result.output = "Doubl: ";
 	result.length = 7;
 	result.free = FALSE;
 
