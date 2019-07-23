@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 19:32:48 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/20 14:25:24 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/22 16:37:51 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,9 @@ void		set_specifier_handler(t_polymorphous_functions *function, const char *spec
 	if (specifier[0] == 'o' || specifier[0] == 'O')
 		function->o_handler = o_handler;
 	if (specifier[0] == 'f')
-		function->f_handler = f_handler;
+		function->f_handler_double = f_handler_double;
+	if (specifier[0] == 'F')
+		function->f_handler_long = f_handler_long;
 	if (specifier[0] == '%')
 		function->perc_handler = perc_handler;
 }
@@ -60,8 +62,8 @@ void		set_specifier_handler(t_polymorphous_functions *function, const char *spec
 #define ARG_SIZE_2 (short)va_arg(args, int)
 #define ARG_SIZE_4 va_arg(args, int)
 #define ARG_SIZE_8 va_arg(args, long long)
-#define ARG_SIZE_9 va_arg(args, double)
-#define ARG_SIZE_16 va_arg(args, long double)
+#define ARG_SIZE_9 (double)va_arg(args, double)
+#define ARG_SIZE_16 (long double)va_arg(args, long double)
 
 #define SIZE_1(x) if (x == 1) {return (function->function(format, ARG_SIZE_1));}
 #define SIZE_2(x) if (x == 2) {return (function->function(format, ARG_SIZE_2));}

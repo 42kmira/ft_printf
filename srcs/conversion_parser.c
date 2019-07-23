@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 11:17:49 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/17 12:21:38 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/22 16:43:27 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,7 @@ t_format	extract_format(const char *format_string, size_t *index)
 	format.precision = extract_precision(format_string, index);
 	format.length = extract_length(format_string, index);
 	format.specifier = &format_string[*index];
+	if (format.length == XL && format.specifier[0] == 'f')
+		format.specifier = "F";
 	return (format);
 }

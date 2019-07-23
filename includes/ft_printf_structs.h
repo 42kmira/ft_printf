@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 19:02:30 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/17 12:04:26 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/22 16:39:05 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ enum	e_type_size
     U_LONG  = sizeof(unsigned long),
     LLONG   = sizeof(long long),
     U_LLONG = sizeof(unsigned long long),
-    DOUB    = sizeof(double),
+    DOUB    = sizeof(double) + 1,
     L_DOUB  = sizeof(long double),
     STR     = sizeof(char *),
     VOID_P  = sizeof(void *)
@@ -83,7 +83,8 @@ typedef union	u_polymorphous_functions
 	t_string	(*u_handler)(t_format *format, unsigned long long value);
 	t_string	(*x_handler)(t_format *format, unsigned long long value);
 	t_string	(*o_handler)(t_format *format, unsigned long long value);
-	t_string	(*f_handler)(t_format *format, long double value);
+	t_string	(*f_handler_double)(t_format *format, double);
+	t_string	(*f_handler_long)(t_format *format, long double);
 	t_string	(*perc_handler)(t_format *format, ...);
 }				t_polymorphous_functions;
 

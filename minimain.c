@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 18:25:33 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/20 15:00:09 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/23 14:45:54 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,5 +139,19 @@ int	main(void)
 
 	// VERIFY("INT %-.10hho", (char)128);
 
-	VERIFY("%#o", 0);
+	// VERIFY("%#o", 0);
+
+	// VERIFY("%Lf", (long double)-2.01);
+	// VERIFY("%Lf", (long double)-1);
+	// printf("SIZE: %zu\n", sizeof(double));
+
+	VERIFY("%Lf", (long double)-1);
+	VERIFY("%Lf", (long double)-10);
+	VERIFY("%Lf", (long double)-.1);
+	VERIFY("%Lf", (long double)-.00001);
+	VERIFY("%Lf", (long double)-2341);
+	VERIFY("%Lf", (long double)-14312341);
+	VERIFY("%Lf", (long double)-341351);
+	VERIFY("%Lf", (long double)-135235.41234123);
+	VERIFY("%f", (double)0);
 }

@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 10:57:18 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/20 14:33:39 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/22 13:37:22 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ t_string	s_handler(t_format *format, char *string)
 	else
 		result.output = string;
 	result.length = ft_strlen(result.output);
+	// if (format->width > result.length)
+	// 	append()
 	result.free = FALSE;
 	(void)format;
 	return (result);
