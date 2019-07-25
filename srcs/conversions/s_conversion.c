@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 10:57:18 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/22 13:37:22 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/25 04:49:58 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,14 @@ t_string	s_handler(t_format *format, char *string)
 		result.output = "(null)";
 	else
 		result.output = string;
+
 	result.length = ft_strlen(result.output);
+	if (result.length < format->precision && format->precision != -1)
+	{
+		result.length = format->precision;
+	}
+
+
 	// if (format->width > result.length)
 	// 	append()
 	result.free = FALSE;

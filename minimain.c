@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 18:25:33 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/25 01:01:38 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/25 04:22:31 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,7 @@ int	main(void)
 	// VERIFY("%f", (double)5);
 
 
-	// VERIFY("%f", (double)4);
+	VERIFY("%.80f", (double).061434961347513554563453465341653416);
 	// VERIFY("%f", (double)8);
 	// VERIFY("%f", (double)16);
 	// VERIFY("%f", (double)64);
@@ -167,7 +167,10 @@ int	main(void)
 
 	// VERIFY("%f", (double)1238.23);
 
-	VERIFY("%.20f", (double).2749467945);
+	// VERIFY("%.200f", (double).00000862154564984156784531984615646531985129684684653496510001);
+
+	// VERIFY("%.40f", (double).0011316138413546);
+
 
 	// VERIFY("%Lf", (long double)-1);
 	// VERIFY("%Lf", (long double)-10);
@@ -177,4 +180,6 @@ int	main(void)
 	// VERIFY("%Lf", (long double)-14312341);
 	// VERIFY("%Lf", (long double)-341351);
 	// VERIFY("%Lf", (long double)-135235.41234123);
+
+	// VERIFY("%.0Lf", (long double)-1);
 }
