@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 18:25:33 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/23 15:08:50 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/25 01:01:38 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,12 +145,36 @@ int	main(void)
 	// VERIFY("%Lf", (long double)-1);
 	// printf("SIZE: %zu\n", sizeof(double));
 
-	VERIFY("%f", (double)-1);
-	VERIFY("%f", (double)-10);
-	VERIFY("%f", (double)-.1);
-	VERIFY("%f", (double)-.00001);
-	VERIFY("%f", (double)-2341);
-	VERIFY("%f", (double)-14312341);
-	VERIFY("%f", (double)-341351);
-	VERIFY("%f", (double)-135235.41234123);
+	// VERIFY("%f", (double)1);
+	// VERIFY("%f", (double)2);
+
+	// VERIFY("%f", (double)5);
+
+
+	// VERIFY("%f", (double)4);
+	// VERIFY("%f", (double)8);
+	// VERIFY("%f", (double)16);
+	// VERIFY("%f", (double)64);
+	// VERIFY("%f", (double)128);
+
+	// VERIFY("%f", (double)32);
+
+	// VERIFY("%f", (double)1.5);
+
+	// VERIFY("%f", (double)34.25);
+
+	// VERIFY("%.200Lf", (long double).0000000000000000000000003674613784167464653168451346853165341653416531654165316534165321653120196854310324615794651357461384132416531);
+
+	// VERIFY("%f", (double)1238.23);
+
+	VERIFY("%.20f", (double).2749467945);
+
+	// VERIFY("%Lf", (long double)-1);
+	// VERIFY("%Lf", (long double)-10);
+	// VERIFY("%Lf", (long double)-.1);
+	// VERIFY("%Lf", (long double)-.00001);
+	// VERIFY("%Lf", (long double)-2341);
+	// VERIFY("%Lf", (long double)-14312341);
+	// VERIFY("%Lf", (long double)-341351);
+	// VERIFY("%Lf", (long double)-135235.41234123);
 }
