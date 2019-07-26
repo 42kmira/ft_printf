@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/17 16:03:10 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/25 04:58:58 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/25 23:23:20 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ uintmax_t	signed_mask_p(int signed_bit)
 		mask = mask | 0b11111111;
 		i++;
 	}
+	if (mask == 0)
+		return 1;
 	return (mask);
 }
 

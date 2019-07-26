@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 19:32:48 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/23 15:06:23 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/25 23:11:27 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void		set_specifier_handler(t_polymorphous_functions *function, const char *spec
 #define ARG_SIZE_9 (double)va_arg(args, double)
 #define ARG_SIZE_16 (long double)va_arg(args, long double)
 
+#define SIZE_0(x) if (x == 1) {return (function->function(format));}
 #define SIZE_1(x) if (x == 1) {return (function->function(format, ARG_SIZE_1));}
 #define SIZE_2(x) if (x == 2) {return (function->function(format, ARG_SIZE_2));}
 #define SIZE_4(x) if (x == 4) {return (function->function(format, ARG_SIZE_4));}
@@ -80,5 +81,6 @@ t_string	do_function(t_polymorphous_functions *function, int arguement_size, t_f
 	SIZE_8(arguement_size);
 	SIZE_9(arguement_size);
 	SIZE_16(arguement_size);
+	SIZE_0(arguement_size);
 	return (function->function(format));
 }

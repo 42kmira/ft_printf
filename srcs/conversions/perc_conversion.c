@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 21:32:07 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/13 13:15:17 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/25 23:16:30 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,17 @@
 t_string	perc_handler(t_format *format, ...)
 {
 	t_string	result;
+	size_t		i;
 
-	result.output = result.single;
-	result.output[0] = '%';
-	result.length = 1;
-	result.free = FALSE;
+	format->length = INT;
+	result = apply_flags(format, 1);
+	i = 0;
+	while (result.output[i] != '\0' && result.output[i] != '1')
+		i++;
+	if (result.output[i] == '1')
+		result.output[i] = '%';
+	result.length = ft_strlen(result.output);
+	result.free = TRUE;
 	(void)format;
 	return (result);
 }

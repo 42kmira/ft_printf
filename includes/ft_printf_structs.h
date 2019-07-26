@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 19:02:30 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/23 21:37:49 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/25 23:05:01 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 enum	e_type_size
 {
 	NO_TYPE = -1,
+	CHAR    = sizeof(char),
     INT     = sizeof(int),
     U_INT   = sizeof(unsigned int),
     S_CHAR  = sizeof(signed char),
