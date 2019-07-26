@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/17 16:03:10 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/25 23:23:20 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/25 23:36:21 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,10 @@ t_string	apply_flags(t_format *format, long long value)
 		length = arg_size;
 	}
 	precision_padding(format, &result);
-	value = correct_number(value, length, arg_size, &sign);
+	if (format->specifier[0] == 'u' || format->specifier[0] == 'o' || format->specifier[0] == 'o')
+		value = correct_number(value, 0, arg_size, &sign);
+	else
+		value = correct_number(value, length, arg_size, &sign);
 	make_number(value, NUM_SET, base, &result);
 	ft_strrev(result.output);
 	if (format->precision == 0 && value == 0)

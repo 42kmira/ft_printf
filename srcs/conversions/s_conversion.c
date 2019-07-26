@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 10:57:18 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/25 22:53:06 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/25 23:29:40 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ t_string	s_handler(t_format *format, char *string)
 {
 	t_string	result;
 
+
 	if (string == NULL)
-		result.output = "(null)";
-	else
-		result.output = string;
+		string = "(null)";
+	result.output = string;
 	result.length = ft_strlen(result.output);
 	if (result.length > format->precision && format->precision != -1)
 	{
