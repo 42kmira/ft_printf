@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 21:03:23 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/20 14:15:05 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/26 02:15:17 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -261,6 +261,64 @@ void	interger_test_zero(void)
 	printf("%04.0d\n", 0);
 }
 
+void	hex_test(void)
+{
+	printf(BOLDGREEN"\nHEX TEST"COLOR_RESET"\n");
+	printf("%x\n", 42);
+
+	printf("%.5x\n", 42);
+	printf("%.3x\n", 42);
+	printf("%.2x\n", 42);
+	printf("%.1x\n", 42);
+	printf("%.0x\n", 42);
+
+	printf(BOLDGREEN"\nHEX TEST WIDTH and PREC"COLOR_RESET"\n");
+	printf("%5x\n", 42);
+	printf("%3x\n", 42);
+	printf("%2x\n", 42);
+	printf("%1x\n", 42);
+	printf("\n");
+	printf("%5.5x\n", 42);
+	printf("%5.3x\n", 42);
+	printf("%5.2x\n", 42);
+	printf("%5.1x\n", 42);
+	printf("%5.0x\n", 42);
+	printf("\n");
+	printf("%5.5x\n", 42);
+	printf("%3.5x\n", 42);
+	printf("%2.5x\n", 42);
+	printf("%1.5x\n", 42);
+	printf("\n");
+	printf("%#.5x\n", 42);
+	printf("%#.3x\n", 42);
+	printf("%#.2x\n", 42);
+	printf("%#.1x\n", 42);
+	printf("%#.0x\n", 42);
+
+	printf(BOLDGREEN"\nHEX TEST WIDTH and PREC with HASH"COLOR_RESET"\n");
+	printf("%#5x\n", 42);
+	printf("%#3x\n", 42);
+	printf("%#2x\n", 42);
+	printf("%#1x\n", 42);
+	printf("\n");
+	printf("%#5.5x\n", 42);
+	printf("%#5.3x\n", 42);
+	printf("%#5.2x\n", 42);
+	printf("%#5.1x\n", 42);
+	printf("%#5.0x\n", 42);
+	printf("\n");
+	printf("%#5.5x\n", 42);
+	printf("%#3.5x\n", 42);
+	printf("%#2.5x\n", 42);
+	printf("%#1.5x\n", 42);
+	printf("\n");
+	printf("%#.5x\n", 42);
+	printf("%#.3x\n", 42);
+	printf("%#.2x\n", 42);
+	printf("%#.1x\n", 42);
+	printf("%#.0x\n", 42);
+}
+
 int		main(void)
 {
 	printf(BOLDBLUE"[[[[-__.-._-START-_.-.__-]]]]"COLOR_RESET"\n");
@@ -286,7 +344,7 @@ int		main(void)
 	// printf("%#x\n", -1);
 	// printf("%#X\n", -1);
 
-	printf("%-05\n");
-
+	hex_test();
+	printf("\n%#05x\n", 43);
 	return (0);
 }

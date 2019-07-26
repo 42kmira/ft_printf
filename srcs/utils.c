@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/20 14:40:12 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/20 14:49:02 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/26 03:45:25 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ char		*append(char *a, char *b)
 		result[i] = b[i - length_a];
 		i++;
 	}
+	result[i] = '\0';
 	return (result);
 }
 

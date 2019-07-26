@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/17 16:03:10 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/25 23:36:21 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/26 04:20:14 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ uintmax_t	signed_mask_p(int signed_bit)
 		i++;
 	}
 	if (mask == 0)
-		return 1;
+		return (1);
 	return (mask);
 }
 
@@ -142,8 +142,23 @@ t_string	apply_flags(t_format *format, long long value)
 		result.output[0] = '\0';
 	result.length = ft_strlen(result.output);
 	override_flags(format);
+
+	if (format->specifier[0] == 'p')
+	{
+		result.output = append("0x", result.output);
+		result.length = result.length + 2;
+	}
+
+	if (value > 0 && !(format->flags & ZERO_FLAG))
+	{
+		if (format->flags & HASH_FLAG && (format->specifier[0] == 'x' || format->specifier[0] == 'X'))
+			result.output = append("0x", result.output);
+	}
 	if (!(format->flags & ZERO_FLAG) || format->width - 1 <= result.length)
 	{
+		if (format->flags & HASH_FLAG && (format->specifier[0] == 'o' || format->specifier[0] == 'O'))
+			if (result.output[0] != '0')
+				result.output = append("0", result.output);
 		if (sign)
 			result.output = append("-", result.output);
 		else if (format->flags & PLUS_FLAG)
@@ -151,13 +166,6 @@ t_string	apply_flags(t_format *format, long long value)
 		else if (format->flags & SPACE_FLAG)
 			result.output = append(" ", result.output);
 
-		if (value > 0)
-		{
-			if (format->flags & HASH_FLAG && (format->specifier[0] == 'o' || format->specifier[0] == 'O'))
-				result.output = append("0", result.output);
-			else if (format->flags & HASH_FLAG && (format->specifier[0] == 'x' || format->specifier[0] == 'X'))
-				result.output = append("0x", result.output);
-		}
 		result.length = ft_strlen(result.output);
 	}
 	char *padding;
@@ -181,10 +189,19 @@ t_string	apply_flags(t_format *format, long long value)
 		else if (format->flags & SPACE_FLAG)
 			result.output[0] = ' ';
 
-		if (format->flags & HASH_FLAG && (format->specifier[0] == 'o' || format->specifier[0] == 'O'))
-			result.output = append("0", result.output);
-		if (format->flags & HASH_FLAG && (format->specifier[0] == 'x' || format->specifier[0] == 'X'))
-			result.output = append("0x", result.output);
+		if (format->flags & HASH_FLAG && value != 0)
+		{
+			if (format->specifier[0] == 'o' || format->specifier[0] == 'O')
+				if (result.output[0] != '0')
+					result.output = append("0", result.output);
+			if (format->specifier[0] == 'x' || format->specifier[0] == 'X')
+			{
+				if (result.output[0] == '0' && result.output[0] == '0')
+					result.output[1] = 'x';
+				else
+					result.output = append("0x", result.output);
+			}
+		}
 	}
 	return (result);
 }
