@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 18:09:42 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/23 15:12:39 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/27 23:28:55 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ t_format	extract_format(const char *format_string, size_t *index);
 
 t_string	apply_flags(t_format *format, long long value);
 void		make_number(uintmax_t number, char *symbols, size_t base, t_string *dst);
+void		override_flags(t_format *format);
+char		*combine_padding(char *padding, char *string, int left_align);
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
@@ -81,7 +83,7 @@ void		make_number(uintmax_t number, char *symbols, size_t base, t_string *dst);
 */
 
 char		*append(char *a, char *b);
-void	upper_case_string(char *string);
+void		upper_case_string(char *string);
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-

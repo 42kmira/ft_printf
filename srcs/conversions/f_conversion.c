@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 20:55:14 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/25 04:20:29 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/28 00:44:37 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,50 @@ t_string	precision(t_format *format, long double value, char *buffer, int *sign)
 	return (string);
 }
 
+void		round_float(t_format *format, t_string *string)
+{
+	int	i;
+	int	j;
+	int	round_begin;
+	int carry;
+
+	// printf("CURR: %s\n", string->output);
+	i = 0;
+	while (string->output[i] != '.')
+		i++;
+
+	j = 0;
+	while (string->output[j] != '\0')
+		j++;
+	// if (j - i >= format->precision)
+	// 	printf("This number needs rounding, LEN: %d and DEC %d. PREC: %d\n", j, i, format->precision);
+
+	round_begin = i + format->precision + 1;
+	carry = 0;
+	if (string->output[round_begin] >= '5')
+		carry = 1;
+
+	round_begin--;
+	while (round_begin != 0 && carry == 1)
+	{
+		carry = 0;
+		if (string->output[round_begin] == '.')
+			round_begin--;
+		if (string->output[round_begin] == '9')
+		{
+			string->output[round_begin] = '0';
+			carry = 1;
+		}
+		else
+		{
+			string->output[round_begin] = string->output[round_begin] + 1;
+		}
+		round_begin--;
+	}
+	(void)format;
+	(void)string;
+}
+
 void		handle_float_flags(t_format *format, t_string *string, int sign)
 {
 	int		j;
@@ -151,14 +195,9 @@ void		handle_float_flags(t_format *format, t_string *string, int sign)
 		j--;
 
 	sign_offset = 0;
-	if (format->flags & PLUS_FLAG || sign)
-		sign_offset = 1;
-	if (sign)
-		string->output[0] = '-';
-	else if (sign_offset)
-		string->output[0] = '+';
 
-	ft_memmove(&string->output[sign_offset], &(string->output[j]), string->length);
+
+	ft_memmove(string->output, &(string->output[j]), string->length);
 	j = sign_offset;
 	while (string->output[j] != '\0' && string->output[j] != '.')
 		j++;
@@ -167,6 +206,8 @@ void		handle_float_flags(t_format *format, t_string *string, int sign)
 		string->output[j] = '.';
 	if (string->output[j] == '.')
 		j++;
+
+
 	i = 0;
 	while (i < format->precision)
 	{
@@ -177,7 +218,66 @@ void		handle_float_flags(t_format *format, t_string *string, int sign)
 		}
 		i++;
 	}
+
+
+	round_float(format, string);
+
 	string->output[j + i] = '\0';
+	if (string->output[j + i - 1] == '.' && !(format->flags & HASH_FLAG))
+		string->output[j + i - 1] = '\0';
+
+	if (format->flags & MINUS_FLAG)
+		format->flags = format->flags & ~ZERO_FLAG;
+	if (format->flags & PLUS_FLAG)
+		format->flags = format->flags & ~SPACE_FLAG;
+
+
+	// if ((sign || format->flags & PLUS_FLAG) && format->width > 2 && format->flags & MINUS_FLAG)
+	// 	format->width = format->width - 1;
+	// if (format->flags & SPACE_FLAG && format->width > 2)
+	// 	format->width = format->width - 1;
+
+	string->length = ft_strlen(string->output);
+
+	if (format->flags & ZERO_FLAG && (format->flags & PLUS_FLAG || sign))
+		format->width = format->width - 1;
+
+	if (!(format->flags & ZERO_FLAG))
+	{
+		if (sign == 1)
+			string->output = append("-", string->output);
+		else if (format->flags & PLUS_FLAG)
+			string->output = append("+", string->output);
+		else if (format->flags & SPACE_FLAG)
+			string->output = append(" ", string->output);
+		string->length = ft_strlen(string->output);
+	}
+
+	char	*padding;
+	int		minus;
+	padding = malloc(sizeof(*padding) * (format->width + 1));
+	ft_bzero(padding, format->width + 1);
+	if (format->flags & ZERO_FLAG)
+		ft_memset(padding, '0', format->width);
+	else
+		ft_memset(padding, ' ', format->width);
+	minus = 0;
+	if (format->flags & MINUS_FLAG)
+		minus = 1;
+
+	string->output = combine_padding(padding, string->output, minus);
+
+	if (format->flags & ZERO_FLAG)
+	{
+		if (sign == 1)
+			string->output = append("-", string->output);
+		else if (format->flags & PLUS_FLAG)
+			string->output = append("+", string->output);
+		else if (format->flags & SPACE_FLAG && string->output[0] == '0' && string->output[1] == '0')
+			string->output[0] = ' ';
+		else if (format->flags & SPACE_FLAG)
+			string->output = append(" ", string->output);
+	}
 }
 
 t_string	f_handler_double(t_format *format, double value)
@@ -191,7 +291,7 @@ t_string	f_handler_double(t_format *format, double value)
 	result.length = ft_strlen(result.output);
 
 	if (format->precision != -1)
-		format->precision = format->precision + 1;
+		format->precision = format->precision;
 	if (format->precision == -1)
 		format->precision = 6;
 	handle_float_flags(format, &result, sign);
@@ -204,7 +304,7 @@ t_string	f_handler_double(t_format *format, double value)
 t_string	f_handler_long(t_format *format, long double value)
 {
 	t_string	result;
-	char		buffer[1023 + 50];
+	char		buffer[10000 + 62];
 	int			sign;
 
 	ft_bzero(buffer, sizeof(buffer));
@@ -212,7 +312,7 @@ t_string	f_handler_long(t_format *format, long double value)
 	result.length = ft_strlen(result.output);
 
 	if (format->precision != -1 && format->precision != 0)
-		format->precision = format->precision + 1;
+		format->precision = format->precision;
 	if (format->precision == -1)
 		format->precision = 6;
 	handle_float_flags(format, &result, sign);
