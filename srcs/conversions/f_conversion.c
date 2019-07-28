@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 20:55:14 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/28 00:52:10 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/28 06:03:10 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,29 +45,37 @@ union						u_ieee2bits
 		union u_ieee2_ld	long_double_;
 }							u_iee2bits;
 
-void		divide_string(char *base, char *buffer, int exp)
+void		divide_string(char *base, char **buffer, int exp)
 {
 	int		j;
 	int		sum;
 	int		carry;
 	int		dot;
+	char	*buff;
 
+	if (-exp > 1000)
+	{
+		buff = malloc(sizeof(*buff) * (-exp + 1));
+		ft_bzero(buff, -exp + 1);
+		ft_strcpy(buff, *buffer);
+		*buffer = buff;
+	}
 	while (exp != 0)
 	{
 		j = 0;
 		carry = 0;
 		dot = 0;
-		while (buffer[j] != '\0' || carry == 1)
+		while ((*buffer)[j] != '\0' || carry == 1)
 		{
-			sum = carry * 10 + (buffer[j] - '0');
-			buffer[j++] = base[sum / 2];
+			sum = carry * 10 + ((*buffer)[j] - '0');
+			(*buffer)[j++] = base[sum / 2];
 			carry = sum % 2;
-			if ((buffer[j] == '\0' && carry == 1 && dot == 0))
-				buffer[j] = '.';
-			if (buffer[j] == '.' && j++)
+			if (((*buffer)[j] == '\0' && carry == 1 && dot == 0))
+				(*buffer)[j] = '.';
+			if ((*buffer)[j] == '.' && j++)
 				dot = 1;
-			if (carry == 1 && buffer[j] == '\0')
-				buffer[j] = '0';
+			if (carry == 1 && (*buffer)[j] == '\0')
+				(*buffer)[j] = '0';
 		}
 		exp++;
 	}
@@ -96,11 +104,12 @@ void		multiply_string(char *base, char *buffer, int exp)
 	}
 }
 
-t_string	precision(t_format *format, long double value, char *buffer, int *sign)
+t_string	precision(t_format *format, long double value, char **buffer, int *sign)
 {
 	union u_ieee2bits	bits;
 	int					exp;
 	long num;
+
 
 	if (format->length != XL)
 	{
@@ -125,16 +134,16 @@ t_string	precision(t_format *format, long double value, char *buffer, int *sign)
 	if (exp < 0)
 	{
 		ft_strrev(string.output);
-		ft_strcpy(buffer, string.output);
+		ft_strcpy(*buffer, string.output);
 		divide_string("0123456789", buffer, exp);
 	}
 	else if (exp > 0)
 	{
-		ft_strcpy(buffer, string.output);
-		multiply_string("0123456789", buffer, exp);
-		ft_strrev(buffer);
+		ft_strcpy(*buffer, string.output);
+		multiply_string("0123456789", *buffer, exp);
+		ft_strrev(*buffer);
 	}
-	string.output = buffer;
+	string.output = *buffer;
 	return (string);
 }
 
@@ -145,7 +154,6 @@ void		round_float(t_format *format, t_string *string)
 	int	round_begin;
 	int carry;
 
-	// printf("CURR: %s\n", string->output);
 	i = 0;
 	while (string->output[i] != '.')
 		i++;
@@ -153,9 +161,6 @@ void		round_float(t_format *format, t_string *string)
 	j = 0;
 	while (string->output[j] != '\0')
 		j++;
-	// if (j - i >= format->precision)
-	// 	printf("This number needs rounding, LEN: %d and DEC %d. PREC: %d\n", j, i, format->precision);
-
 	round_begin = i + format->precision + 1;
 	carry = 0;
 	if (string->output[round_begin] >= '5')
@@ -178,8 +183,6 @@ void		round_float(t_format *format, t_string *string)
 		}
 		round_begin--;
 	}
-	(void)format;
-	(void)string;
 }
 
 void		handle_float_flags(t_format *format, t_string *string, int sign)
@@ -193,21 +196,15 @@ void		handle_float_flags(t_format *format, t_string *string, int sign)
 		j++;
 	if (string->output[j] == '.')
 		j--;
-
 	sign_offset = 0;
-
-
 	ft_memmove(string->output, &(string->output[j]), string->length);
 	j = sign_offset;
 	while (string->output[j] != '\0' && string->output[j] != '.')
 		j++;
-
 	if (format->precision != 0 && string->output[j] != '.')
 		string->output[j] = '.';
 	if (string->output[j] == '.')
 		j++;
-
-
 	i = 0;
 	while (i < format->precision)
 	{
@@ -218,29 +215,25 @@ void		handle_float_flags(t_format *format, t_string *string, int sign)
 		}
 		i++;
 	}
-
-
 	round_float(format, string);
-
 	string->output[j + i] = '\0';
+
+
 	if (string->output[j + i - 1] == '.' && !(format->flags & HASH_FLAG))
 		string->output[j + i - 1] = '\0';
+
+	if (string->output[0] == '.')
+		string->output = append("0", string->output);
 
 	if (format->flags & MINUS_FLAG)
 		format->flags = format->flags & ~ZERO_FLAG;
 	if (format->flags & PLUS_FLAG)
 		format->flags = format->flags & ~SPACE_FLAG;
-
-
-	// if ((sign || format->flags & PLUS_FLAG) && format->width > 2 && format->flags & MINUS_FLAG)
-	// 	format->width = format->width - 1;
-	// if (format->flags & SPACE_FLAG && format->width > 2)
-	// 	format->width = format->width - 1;
-
 	string->length = ft_strlen(string->output);
-
 	if (format->flags & ZERO_FLAG && (format->flags & PLUS_FLAG || sign))
 		format->width = format->width - 1;
+
+	// printf("STRING %s\n", string->output);
 
 	if (!(format->flags & ZERO_FLAG))
 	{
@@ -253,6 +246,8 @@ void		handle_float_flags(t_format *format, t_string *string, int sign)
 		string->length = ft_strlen(string->output);
 	}
 
+	// printf("STRING %s\n", string->output);
+
 	char	*padding;
 	int		minus;
 	padding = malloc(sizeof(*padding) * (format->width + 1));
@@ -264,9 +259,7 @@ void		handle_float_flags(t_format *format, t_string *string, int sign)
 	minus = 0;
 	if (format->flags & MINUS_FLAG)
 		minus = 1;
-
 	string->output = combine_padding(padding, string->output, minus);
-
 	if (format->flags & ZERO_FLAG)
 	{
 		if (sign == 1)
@@ -283,11 +276,23 @@ void		handle_float_flags(t_format *format, t_string *string, int sign)
 t_string	f_handler_double(t_format *format, double value)
 {
 	t_string	result;
-	char		buffer[1023 + 50];
+	char		*buffer;
+	char		buffer_fixed[1023 + 50 + 1];
 	int			sign;
 
-	ft_bzero(buffer, sizeof(buffer));
-	result = precision(format, value, buffer, &sign);
+	if (format->precision < 1023 + 50)
+	{
+		ft_bzero(buffer_fixed, sizeof(buffer_fixed));
+		buffer = buffer_fixed;
+	}
+	else
+	{
+		buffer = malloc(sizeof(*buffer) * (format->precision + 1023));
+		ft_bzero(buffer, format->precision + 1023);
+	}
+
+	result = precision(format, value, &buffer, &sign);
+
 	result.length = ft_strlen(result.output);
 
 	if (format->precision != -1)
@@ -304,12 +309,24 @@ t_string	f_handler_double(t_format *format, double value)
 t_string	f_handler_long(t_format *format, long double value)
 {
 	t_string	result;
-	char		buffer[10000 + 62];
+	char		buffer_fixed[6000 + 62];
+	char		*buffer;
 	int			sign;
 
-	ft_bzero(buffer, sizeof(buffer));
-	result = precision(format, value, buffer, &sign);
+	if (format->precision < 6000 + 61)
+	{
+		ft_bzero(buffer_fixed, sizeof(buffer_fixed));
+		buffer = buffer_fixed;
+	}
+	else
+	{
+		buffer = malloc(sizeof(*buffer) * (format->precision + 100));
+		ft_bzero(buffer, format->precision + 100);
+	}
+
+	result = precision(format, value, &buffer, &sign);
 	result.length = ft_strlen(result.output);
+
 
 	if (format->precision != -1 && format->precision != 0)
 		format->precision = format->precision;
@@ -318,6 +335,7 @@ t_string	f_handler_long(t_format *format, long double value)
 	handle_float_flags(format, &result, sign);
 
 	result.length = ft_strlen(result.output);
+
 
 	return (result);
 }
