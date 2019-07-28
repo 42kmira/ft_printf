@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 20:55:14 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/28 00:44:37 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/28 00:52:10 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ t_string	precision(t_format *format, long double value, char *buffer, int *sign)
 		multiply_string("0123456789", buffer, exp);
 		ft_strrev(buffer);
 	}
-	string.output = ft_strdup(buffer);
+	string.output = buffer;
 	return (string);
 }
 
