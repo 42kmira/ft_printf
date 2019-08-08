@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 19:32:48 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/25 23:11:27 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/07 22:20:34 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int			get_arguement_size(int specifier, int length)
 	return (-1);
 }
 
-void		set_specifier_handler(t_polymorphous_functions *function, const char *specifier)
+void		set_specifier_handler(t_spec_functs *function, const char *specifier)
 {
 	if (specifier[0] == 'c')
 		function->c_handler = c_handler;
@@ -73,7 +73,7 @@ void		set_specifier_handler(t_polymorphous_functions *function, const char *spec
 #define SIZE_9(x) if (x == 9) {return (function->function(format, ARG_SIZE_9));}
 #define SIZE_16(x) if (x == 16) {return (function->function(format, ARG_SIZE_16));}
 
-t_string	do_function(t_polymorphous_functions *function, int arguement_size, t_format *format, va_list args)
+t_string	do_function(t_spec_functs *function, int arguement_size, t_format *format, va_list args)
 {
 	SIZE_1(arguement_size);
 	SIZE_2(arguement_size);

@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 21:03:23 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/26 02:15:17 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/01 20:31:40 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -319,6 +319,8 @@ void	hex_test(void)
 	printf("%#.0x\n", 42);
 }
 
+#include <stdlib.h>
+
 int		main(void)
 {
 	printf(BOLDBLUE"[[[[-__.-._-START-_.-.__-]]]]"COLOR_RESET"\n");
@@ -344,7 +346,10 @@ int		main(void)
 	// printf("%#x\n", -1);
 	// printf("%#X\n", -1);
 
-	hex_test();
-	printf("\n%#05x\n", 43);
+	// hex_test();
+
+	// printf("%013.2d\n", 7);
+	// printf("%013.2d\n", -7);
+
 	return (0);
 }

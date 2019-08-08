@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 18:09:42 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/27 23:28:55 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/07 22:22:49 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,9 @@ int			ft_printf(const char *format, ...);
 */
 
 int			get_arguement_size(int specifier, int length);
-void		set_specifier_handler(t_polymorphous_functions *function, const char *specifier);
-t_string	do_function(t_polymorphous_functions *function, int arguement_size, t_format *format, va_list args);
+void		set_specifier_handler(t_spec_functs *funct, const char *specifier);
+t_string	do_function
+(t_spec_functs *funct, int arg_size, t_format *format, va_list args);
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
@@ -72,7 +73,7 @@ t_format	extract_format(const char *format_string, size_t *index);
 */
 
 t_string	apply_flags(t_format *format, long long value);
-void		make_number(uintmax_t number, char *symbols, size_t base, t_string *dst);
+void		make_number(uintmax_t num, char *symb, size_t base, t_string *dst);
 void		override_flags(t_format *format);
 char		*combine_padding(char *padding, char *string, int left_align);
 
@@ -102,6 +103,5 @@ t_string	o_handler(t_format *format, unsigned long long value);
 t_string	f_handler_double(t_format *format, double value);
 t_string	f_handler_long(t_format *format, long double value);
 t_string	perc_handler(t_format *format, ...);
-
 
 #endif

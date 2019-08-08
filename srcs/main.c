@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 17:59:46 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/20 14:24:03 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/07 22:20:34 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		convert(const char *format, size_t *index, va_list args)
 {
 	t_string					converted_string;
 	t_format					formatter;
-	t_polymorphous_functions	function;
+	t_spec_functs	function;
 	int							arguement_size;
 
 	if (format[*index] == '%')
