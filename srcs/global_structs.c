@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 19:35:02 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/25 23:16:44 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/07 22:44:31 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 enum	e_specifier
 {
-    SP_D    = 'd',
-    SP_I    = 'i',
-    SP_U    = 'u',
-    SP_O    = 'o',
-    SP_X    = 'x',
-    SP_F    = 'f',
-    SP_C    = 'c',
-    SP_S    = 's',
-    SP_P    = 'p',
-    SP_PERC = '%',
+	SP_D = 'd',
+	SP_I = 'i',
+	SP_U = 'u',
+	SP_O = 'o',
+	SP_X = 'x',
+	SP_F = 'f',
+	SP_C = 'c',
+	SP_S = 's',
+	SP_P = 'p',
+	SP_PERC = '%',
 };
 
 #define ARG_SIZE_1 int
@@ -35,18 +35,18 @@ enum	e_specifier
 
 int		g_type_table[N_SPECIFIERS][9] =
 {
-	{-1,	_DEF_,	HH,		H,		L,		LL,		XL},
-	{SP_D,	INT,	S_CHAR,	SHORT,	LONG,	LLONG,	-1},
-	{SP_I,	INT,	S_CHAR,	SHORT,	LONG,	LLONG,	-1},
-	{SP_U,	U_INT,	U_CHAR,	U_SHORT,U_LONG,	U_LLONG,-1},
-	{SP_O,	U_INT,	U_CHAR,	U_SHORT,U_LONG,	U_LLONG,-1},
-	{SP_X,	U_INT,	U_CHAR,	U_SHORT,U_LONG,	U_LLONG,-1},
-	{SP_F,	DOUB,	-1,		-1,		-1,		-1,		L_DOUB},
-	{SP_C,	INT,	-1,		-1,		-1,		-1,		-1},
-	{SP_S,	STR,	-1,		-1,		-1,		-1,		-1},
-	{SP_P,	VOID_P,	-1,		-1,		-1,		-1,		-1},
-	{SP_PERC, 0,	-1,		-1,		-1,		-1,		-1},
-	{0,		0,		0,		0,		0,		0,		0}
+	{-1, _DEF_, HH, H, L, LL, XL},
+	{SP_D, INT, S_CHAR, SHORT, LONG, LLONG, -1},
+	{SP_I, INT, S_CHAR, SHORT, LONG, LLONG, -1},
+	{SP_U, U_INT, U_CHAR, U_SHORT, U_LONG, U_LLONG, -1},
+	{SP_O, U_INT, U_CHAR, U_SHORT, U_LONG, U_LLONG, -1},
+	{SP_X, U_INT, U_CHAR, U_SHORT, U_LONG, U_LLONG, -1},
+	{SP_F, DOUB, -1, -1, -1, -1, L_DOUB},
+	{SP_C, INT, -1, -1, -1, -1, -1},
+	{SP_S, STR, -1, -1, -1, -1, -1},
+	{SP_P, VOID_P, -1, -1, -1, -1, -1},
+	{SP_PERC, 0, -1, -1, -1, -1, -1},
+	{0, 0, 0, 0, 0, 0, 0}
 };
 
 int		g_flag_table[N_FLAGS][2] =

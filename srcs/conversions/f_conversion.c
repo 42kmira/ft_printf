@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 20:55:14 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/28 06:03:10 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/07 22:27:41 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,35 +15,6 @@
 
 #define DOUB_EXP_BIAS 1023
 #define LONG_EXP_BIAS 16383
-
-union					u_ieee2_d
-{
-	double				type;
-	struct
-	{
-		unsigned long	mantissa	: 52;
-		unsigned int	exp			: 11;
-		unsigned int	sign		: 1;
-	}	bits;
-}					u_double_bit;
-
-union					u_ieee2_ld
-{
-	long double			type;
-	struct
-	{
-		unsigned long	mantissa	:64;
-		unsigned int	exp			:15;
-		unsigned int	sign		:1;
-	}					bits;
-
-}						u_long_double_bit;
-
-union						u_ieee2bits
-{
-		union u_ieee2_d		double_;
-		union u_ieee2_ld	long_double_;
-}							u_iee2bits;
 
 void		divide_string(char *base, char **buffer, int exp)
 {

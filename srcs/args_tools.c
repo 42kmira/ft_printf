@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 19:32:48 by kmira             #+#    #+#             */
-/*   Updated: 2019/08/07 22:20:34 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/07 22:44:23 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,29 +32,29 @@ int			get_arguement_size(int specifier, int length)
 	return (-1);
 }
 
-void		set_specifier_handler(t_spec_functs *function, const char *specifier)
+void		set_specifier_handler(t_spec_functs *function, const char *spec)
 {
-	if (specifier[0] == 'c')
+	if (spec[0] == 'c')
 		function->c_handler = c_handler;
-	if (specifier[0] == 's')
+	if (spec[0] == 's')
 		function->s_handler = s_handler;
-	if (specifier[0] == 'p')
+	if (spec[0] == 'p')
 		function->p_handler = p_handler;
-	if (specifier[0] == 'd')
+	if (spec[0] == 'd')
 		function->d_handler = d_handler;
-	if (specifier[0] == 'i')
+	if (spec[0] == 'i')
 		function->d_handler = i_handler;
-	if (specifier[0] == 'u')
+	if (spec[0] == 'u')
 		function->u_handler = u_handler;
-	if (specifier[0] == 'x' || specifier[0] == 'X')
+	if (spec[0] == 'x' || spec[0] == 'X')
 		function->x_handler = x_handler;
-	if (specifier[0] == 'o' || specifier[0] == 'O')
+	if (spec[0] == 'o' || spec[0] == 'O')
 		function->o_handler = o_handler;
-	if (specifier[0] == 'f')
+	if (spec[0] == 'f')
 		function->f_handler_double = f_handler_double;
-	if (specifier[0] == 'F')
+	if (spec[0] == 'F')
 		function->f_handler_long = f_handler_long;
-	if (specifier[0] == '%')
+	if (spec[0] == '%')
 		function->perc_handler = perc_handler;
 }
 
@@ -65,22 +65,23 @@ void		set_specifier_handler(t_spec_functs *function, const char *specifier)
 #define ARG_SIZE_9 (double)va_arg(args, double)
 #define ARG_SIZE_16 (long double)va_arg(args, long double)
 
-#define SIZE_0(x) if (x == 1) {return (function->function(format));}
-#define SIZE_1(x) if (x == 1) {return (function->function(format, ARG_SIZE_1));}
-#define SIZE_2(x) if (x == 2) {return (function->function(format, ARG_SIZE_2));}
-#define SIZE_4(x) if (x == 4) {return (function->function(format, ARG_SIZE_4));}
-#define SIZE_8(x) if (x == 8) {return (function->function(format, ARG_SIZE_8));}
-#define SIZE_9(x) if (x == 9) {return (function->function(format, ARG_SIZE_9));}
-#define SIZE_16(x) if (x == 16) {return (function->function(format, ARG_SIZE_16));}
+#define SIZE_0(x) if (x == 1) {return (funct->function(format));}
+#define SIZE_1(x) if (x == 1) {return (funct->function(format, ARG_SIZE_1));}
+#define SIZE_2(x) if (x == 2) {return (funct->function(format, ARG_SIZE_2));}
+#define SIZE_4(x) if (x == 4) {return (funct->function(format, ARG_SIZE_4));}
+#define SIZE_8(x) if (x == 8) {return (funct->function(format, ARG_SIZE_8));}
+#define SIZE_9(x) if (x == 9) {return (funct->function(format, ARG_SIZE_9));}
+#define SIZE_16(x) if (x == 16) {return (funct->function(format, ARG_SIZE_16));}
 
-t_string	do_function(t_spec_functs *function, int arguement_size, t_format *format, va_list args)
+t_string	do_function
+	(t_spec_functs *funct, int arg_size, t_format *format, va_list args)
 {
-	SIZE_1(arguement_size);
-	SIZE_2(arguement_size);
-	SIZE_4(arguement_size);
-	SIZE_8(arguement_size);
-	SIZE_9(arguement_size);
-	SIZE_16(arguement_size);
-	SIZE_0(arguement_size);
-	return (function->function(format));
+	SIZE_1(arg_size);
+	SIZE_2(arg_size);
+	SIZE_4(arg_size);
+	SIZE_8(arg_size);
+	SIZE_9(arg_size);
+	SIZE_16(arg_size);
+	SIZE_0(arg_size);
+	return (funct->function(format));
 }

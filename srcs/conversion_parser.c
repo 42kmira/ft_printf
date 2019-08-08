@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 11:17:49 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/23 15:01:24 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/07 22:44:28 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ int			extract_length(const char *format_string, size_t *index)
 	*index = *index + 2;
 	if (format_string[*index - 2] == 'h' && format_string[*index - 1] == 'h')
 		return (HH);
-	else if (format_string[*index - 2] == 'l' && format_string[*index - 1] == 'l')
+	else if (format_string[*index - 2] == 'l'
+			&& format_string[*index - 1] == 'l')
 		return (LL);
 	*index = *index - 1;
 	if (format_string[*index - 1] == 'h')

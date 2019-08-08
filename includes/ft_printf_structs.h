@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 19:02:30 by kmira             #+#    #+#             */
-/*   Updated: 2019/08/07 22:20:34 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/07 22:35:27 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ enum				e_type_size
 	S_CHAR = sizeof(signed char),
 	U_CHAR = sizeof(unsigned char),
 	SHORT = sizeof(short),
-	U_SHOR = sizeof(unsigned short),
+	U_SHORT = sizeof(unsigned short),
 	LONG = sizeof(long),
 	U_LONG = sizeof(unsigned long),
 	LLONG = sizeof(long long),
-	U_LLON = sizeof(unsigned long long),
+	U_LLONG = sizeof(unsigned long long),
 	DOUB = sizeof(double) + 1,
 	L_DOUB = sizeof(long double),
 	STR = sizeof(char *),
