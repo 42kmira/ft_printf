@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 10:57:18 by kmira             #+#    #+#             */
-/*   Updated: 2019/08/07 22:28:53 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/17 15:54:51 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,7 @@ t_string	s_handler(t_format *format, char *string)
 	result.output = string;
 	result.length = ft_strlen(result.output);
 	if (result.length > format->precision && format->precision != -1)
-	{
 		result.length = format->precision;
-	}
 	if (format->width > result.length)
 	{
 		result.output = malloc(sizeof(*(result.output)) * (format->width));

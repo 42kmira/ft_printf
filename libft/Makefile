@@ -6,7 +6,7 @@
 #    By: kmira <kmira@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/12 11:40:08 by kmira             #+#    #+#              #
-#    Updated: 2019/07/19 17:09:12 by kmira            ###   ########.fr        #
+#    Updated: 2019/08/16 17:02:49 by kmira            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,6 @@ FUNCS	=	atoi \
 			memalloc \
 			memdel \
 			min \
-			ntoa \
 			putchar_fd \
 			putchar \
 			putendl_fd \

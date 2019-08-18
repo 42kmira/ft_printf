@@ -6,7 +6,7 @@
 #    By: kmira <kmira@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/07 18:32:39 by kmira             #+#    #+#              #
-#    Updated: 2019/07/20 14:40:46 by kmira            ###   ########.fr        #
+#    Updated: 2019/08/16 17:04:45 by kmira            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,8 @@ CONVERSION_FILES = \
 		c_conversion \
 		d_conversion \
 		f_conversion \
+		f_l_conversion \
+		f_utils \
 		i_conversion \
 		o_conversion \
 		p_conversion \
@@ -31,6 +33,7 @@ CONVERSION_FILES = \
 
 MAIN_FILES = \
 		apply_flags \
+		apply_modifiers \
 		args_tools \
 		conversion_parser \
 		global_structs \
@@ -53,8 +56,7 @@ all: $(NAME)
 
 # ar -x $(LIBRARY)
 # extracts the o files from an .a file
-$(NAME): $(OBJS)
-	make -C libft/
+$(NAME): $(LIBRARY) $(OBJS)
 	@echo "$(GREEN)Making your printf.a"
 	@ar -rcs $(NAME) libft/*.o $(OBJS)
 	@echo "$(GREEN)DONE"
@@ -62,7 +64,7 @@ $(NAME): $(OBJS)
 $(LIBRARY):
 	make -C libft/
 
-$(OBJS): $(LIBRARY)
+$(OBJS):
 	@gcc $(FLAGS) -I$(INCLUDES) -c $(SRCS)
 
 clean:

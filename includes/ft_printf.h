@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 18:09:42 by kmira             #+#    #+#             */
-/*   Updated: 2019/08/07 22:22:49 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/17 17:16:47 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,14 @@ t_format	extract_format(const char *format_string, size_t *index);
 t_string	apply_flags(t_format *format, long long value);
 void		make_number(uintmax_t num, char *symb, size_t base, t_string *dst);
 void		override_flags(t_format *format);
-char		*combine_padding(char *padding, char *string, int left_align);
+char		*combine_padding(char *string, t_format *format);
+t_string	apply_flags(t_format *format, long long value);
+
+uintmax_t	signed_mask_p(int signed_bit);
+void		precision_padding(t_format *format, t_string *dst);
+uintmax_t	correct_number(uintmax_t val, int signed_bit, int len, int *sign);
+t_string	precision(t_format *form, long double val, char **buff, int *sign);
+void		handle_float_flags(t_format *format, t_string *string, int sign);
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-

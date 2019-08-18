@@ -6,25 +6,11 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 19:35:02 by kmira             #+#    #+#             */
-/*   Updated: 2019/08/07 22:44:31 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/16 16:59:12 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-enum	e_specifier
-{
-	SP_D = 'd',
-	SP_I = 'i',
-	SP_U = 'u',
-	SP_O = 'o',
-	SP_X = 'x',
-	SP_F = 'f',
-	SP_C = 'c',
-	SP_S = 's',
-	SP_P = 'p',
-	SP_PERC = '%',
-};
 
 #define ARG_SIZE_1 int
 #define ARG_SIZE_2 int

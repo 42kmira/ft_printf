@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/20 14:40:12 by kmira             #+#    #+#             */
-/*   Updated: 2019/08/07 22:46:13 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/16 17:00:16 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,12 @@ void	upper_case_string(char *string)
 		string[i] = ft_toupper(string[i]);
 		i++;
 	}
+}
+
+void	override_flags(t_format *format)
+{
+	if (format->precision != -1 || format->flags & MINUS_FLAG)
+		format->flags = format->flags & ~ZERO_FLAG;
+	if (format->flags & PLUS_FLAG)
+		format->flags = format->flags & ~SPACE_FLAG;
 }
