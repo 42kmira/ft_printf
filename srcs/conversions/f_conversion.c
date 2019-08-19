@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 20:55:14 by kmira             #+#    #+#             */
-/*   Updated: 2019/08/17 17:16:01 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/19 00:36:02 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void		round_float(t_format *format, t_string *string)
 void		use_flags(t_format *format, t_string *string, int sign)
 {
 	if (string->output[0] == '.')
-		string->output = append("0", string->output);
+		string->output = append("0", string->output, NEITHER);
 	if (format->flags & MINUS_FLAG)
 		format->flags = format->flags & ~ZERO_FLAG;
 	if (format->flags & PLUS_FLAG)
@@ -53,11 +53,11 @@ void		use_flags(t_format *format, t_string *string, int sign)
 	if (!(format->flags & ZERO_FLAG))
 	{
 		if (sign == 1)
-			string->output = append("-", string->output);
+			string->output = append("-", string->output, NEITHER);
 		else if (format->flags & PLUS_FLAG)
-			string->output = append("+", string->output);
+			string->output = append("+", string->output, NEITHER);
 		else if (format->flags & SPACE_FLAG)
-			string->output = append(" ", string->output);
+			string->output = append(" ", string->output, NEITHER);
 		string->length = ft_strlen(string->output);
 	}
 }
@@ -72,14 +72,14 @@ void		float_padding(t_format *format, t_string *string, int sign)
 	if (format->flags & ZERO_FLAG)
 	{
 		if (sign == 1)
-			string->output = append("-", string->output);
+			string->output = append("-", string->output, NEITHER);
 		else if (format->flags & PLUS_FLAG)
-			string->output = append("+", string->output);
+			string->output = append("+", string->output, NEITHER);
 		else if (format->flags & SPACE_FLAG && string->output[0] == '0'
 				&& string->output[1] == '0')
 			string->output[0] = ' ';
 		else if (format->flags & SPACE_FLAG)
-			string->output = append(" ", string->output);
+			string->output = append(" ", string->output, NEITHER);
 	}
 }
 

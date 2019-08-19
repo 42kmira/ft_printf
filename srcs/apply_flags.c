@@ -6,44 +6,11 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/17 16:03:10 by kmira             #+#    #+#             */
-/*   Updated: 2019/08/17 17:19:19 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/19 02:14:41 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-uintmax_t	signed_mask_p(int signed_bit)
-{
-	long long	mask;
-	int			i;
-
-	i = 0;
-	mask = 0;
-	while (i < signed_bit)
-	{
-		mask = mask << 8;
-		mask = mask | 0b11111111;
-		i++;
-	}
-	if (mask == 0)
-		return (1);
-	return (mask);
-}
-
-void		make_number(uintmax_t numb, char *symb, size_t base, t_string *dst)
-{
-	size_t	i;
-
-	i = 0;
-	if (numb == 0)
-		dst->output[i] = '0';
-	while (numb > 0)
-	{
-		dst->output[i] = symb[numb % base];
-		numb = numb / base;
-		i++;
-	}
-}
 
 void		precision_padding(t_format *format, t_string *dst)
 {
@@ -70,10 +37,7 @@ uintmax_t	correct_number(uintmax_t val, int signed_bit, int length, int *sign)
 	{
 		*sign = (val & (1ULL << (signed_bit * 8 - 1))) ? 1 : 0;
 		if (*sign)
-		{
-			val = val * -1 - 1;
-			val = val + 1;
-		}
+			val = val * -1;
 	}
 	val = val & mask;
 	return (val);
@@ -106,4 +70,57 @@ char		*combine_padding(char *string, t_format *format)
 		return (padding);
 	}
 	return (string);
+}
+
+void		apply_flags_part_2(t_format *format, t_string *result, long long val, int sign)
+{
+	ft_strrev(result->output);
+	if (format->precision == 0 && val == 0)
+		result->output[0] = '\0';
+	result->length = ft_strlen(result->output);
+	if (format->specifier[0] == 'p')
+		result->output = append("0x", result->output, LEFT);
+	if (format->flags & HASH_FLAG && val != 0 && !(format->flags & ZERO_FLAG) &&
+		(format->specifier[0] == 'x' || format->specifier[0] == 'X'))
+		result->output = append("0x", result->output, LEFT);
+	if (!(format->flags & ZERO_FLAG) || format->width - 1 <= result->length)
+	{
+		if (format->flags & HASH_FLAG && (format->specifier[0] == 'o'))
+			if (result->output[0] != '0')
+				result->output = append("0", result->output, LEFT);
+		if (sign)
+			result->output = append("-", result->output, LEFT);
+		else if (format->flags & PLUS_FLAG)
+			result->output = append("+", result->output, LEFT);
+		else if (format->flags & SPACE_FLAG)
+			result->output = append(" ", result->output, LEFT);
+		result->length = ft_strlen(result->output);
+	}
+	result->output = combine_padding(result->output, format);
+}
+
+void		apply_flags_part_3(t_format *format, t_string *result, long long value, int sign)
+{
+	if (format->flags & ZERO_FLAG)
+	{
+		if (sign)
+			result->output[0] = '-';
+		else if (format->flags & PLUS_FLAG)
+			result->output[0] = '+';
+		else if (format->flags & SPACE_FLAG)
+			result->output[0] = ' ';
+		if (format->flags & HASH_FLAG && value != 0)
+		{
+			if (format->specifier[0] == 'o')
+				if (result->output[0] != '0')
+					result->output = append("0", result->output, LEFT);
+			if (format->specifier[0] == 'x' || format->specifier[0] == 'X')
+			{
+				if (result->output[0] == '0')
+					result->output[1] = 'x';
+				else
+					result->output = append("0x", result->output, LEFT);
+			}
+		}
+	}
 }

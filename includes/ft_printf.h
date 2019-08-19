@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 18:09:42 by kmira             #+#    #+#             */
-/*   Updated: 2019/08/17 17:16:47 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/19 02:08:00 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,11 @@
 #  define EXIT(error_msg) ft_puterror(error_msg)
 # endif
 
+# define NEITHER 0
+# define RIGHT 1
+# define LEFT 2
+# define BOTH 3
+
 int			ft_printf(const char *format, ...);
 
 /*
@@ -72,11 +77,12 @@ t_format	extract_format(const char *format_string, size_t *index);
 ** Uses the flags in the struct t_format.
 */
 
-t_string	apply_flags(t_format *format, long long value);
+void		apply_flags_part_2(t_format *format, t_string *result, long long value, int sign);
+void		apply_flags_part_3(t_format *format, t_string *result, long long value, int sign);
+
 void		make_number(uintmax_t num, char *symb, size_t base, t_string *dst);
 void		override_flags(t_format *format);
 char		*combine_padding(char *string, t_format *format);
-t_string	apply_flags(t_format *format, long long value);
 
 uintmax_t	signed_mask_p(int signed_bit);
 void		precision_padding(t_format *format, t_string *dst);
@@ -90,7 +96,7 @@ void		handle_float_flags(t_format *format, t_string *string, int sign);
 ** Directory that has the files to handle the different conversions.
 */
 
-char		*append(char *a, char *b);
+char		*append(char *a, char *b, char free);
 void		upper_case_string(char *string);
 
 /*
