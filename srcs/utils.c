@@ -6,42 +6,11 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/20 14:40:12 by kmira             #+#    #+#             */
-/*   Updated: 2019/08/19 02:14:31 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/19 18:53:53 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-char		*append(char *a, char *b, char str_free)
-{
-	char	*result;
-
-	result = ft_strjoin(a, b);
-	if (str_free < 0 || str_free > BOTH)
-		ft_puterror("Wrong free option: "__FILE__);
-	if (str_free == RIGHT)
-		free(a);
-	else if (str_free == LEFT)
-		free(b);
-	else if (str_free == BOTH)
-	{
-		free(a);
-		free(b);
-	}
-	return (result);
-}
-
-void		upper_case_string(char *string)
-{
-	size_t	i;
-
-	i = 0;
-	while (string[i] != '\0')
-	{
-		string[i] = ft_toupper(string[i]);
-		i++;
-	}
-}
 
 void		override_flags(t_format *format)
 {

@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 02:15:47 by kmira             #+#    #+#             */
-/*   Updated: 2019/08/19 02:02:52 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/21 02:00:57 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void		buffer_fix(char **buffer, int exp)
 		buff = malloc(sizeof(*buff) * (-exp + 1));
 		ft_bzero(buff, -exp + 1);
 		ft_strcpy(buff, *buffer);
+		free(*buffer);
 		*buffer = buff;
 	}
 }
@@ -94,6 +95,8 @@ void		make_longer(t_string *string, int exp, char **buff)
 		multiply_string("0123456789", *buff, exp);
 		ft_strrev(*buff);
 	}
+	free(string->output);
+	string->output = *buff;
 }
 
 t_string	precision(t_format *format, long double val, char **buff, int *sign)
@@ -121,6 +124,5 @@ t_string	precision(t_format *format, long double val, char **buff, int *sign)
 	ft_bzero(string.output, 52);
 	make_number(num, "0123456789", 10, &string);
 	make_longer(&string, exp, buff);
-	string.output = *buff;
 	return (string);
 }

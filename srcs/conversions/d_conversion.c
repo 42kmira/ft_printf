@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 13:57:38 by kmira             #+#    #+#             */
-/*   Updated: 2019/08/19 02:09:49 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/21 03:25:01 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,5 @@ t_string	d_handler(t_format *format, long long value)
 	apply_flags_part_2(format, &result, value, sign);
 	apply_flags_part_3(format, &result, value, sign);
 	result.length = ft_strlen(result.output);
-	result.free = TRUE;
 	return (result);
 }

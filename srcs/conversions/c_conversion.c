@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 10:55:44 by kmira             #+#    #+#             */
-/*   Updated: 2019/08/19 02:10:31 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/21 03:23:15 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ t_string	c_handler(t_format *format, int c)
 	if (result.output[i] == '1')
 		result.output[i] = c;
 	result.length = format->width;
-	result.free = TRUE;
 	return (result);
 }
 

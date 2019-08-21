@@ -6,13 +6,15 @@
 #    By: kmira <kmira@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/12 11:40:08 by kmira             #+#    #+#              #
-#    Updated: 2019/08/16 17:02:49 by kmira            ###   ########.fr        #
+#    Updated: 2019/08/19 18:56:37 by kmira            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= libft.a
 FLAGS	= -Wall -Werror -Wextra -c -O2
-FUNCS	=	atoi \
+FUNCS	=	\
+			append \
+			atoi \
 			bzero \
 			isalnum \
 			isalpha \
@@ -32,12 +34,14 @@ FUNCS	=	atoi \
 			strdup \
 			strlcat \
 			strlen \
+			strlwr \
 			strncat \
 			strncmp \
 			strncpy \
 			strnstr \
 			strrchr \
 			strstr \
+			strupr \
 			tolower \
 			toupper \
 			itoa \

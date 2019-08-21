@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 19:32:48 by kmira             #+#    #+#             */
-/*   Updated: 2019/08/07 22:44:23 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/21 03:04:44 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,22 @@ void		set_specifier_handler(t_spec_functs *function, const char *spec)
 		function->perc_handler = perc_handler;
 }
 
-#define ARG_SIZE_1 (char)va_arg(args, int)
-#define ARG_SIZE_2 (short)va_arg(args, int)
-#define ARG_SIZE_4 va_arg(args, int)
-#define ARG_SIZE_8 va_arg(args, long long)
+#define ARG_SIZE_1 (unsigned char)va_arg(args, unsigned int)
+#define ARG_SIZE_2 (unsigned short)va_arg(args, unsigned int)
+#define ARG_SIZE_4 va_arg(args, unsigned int)
+#define ARG_SIZE_8 va_arg(args, unsigned long long)
 #define ARG_SIZE_9 (double)va_arg(args, double)
 #define ARG_SIZE_16 (long double)va_arg(args, long double)
+
+/*
+** Based on the function that was set by set_specifier_handler()
+** the do_function() will return the resulting t_string.
+** The arguements passed into the handler function are the `format`
+** and a macro that expands to the correct `va_arg()`. The correct
+** va_arg() is determined by the byte length that was passed in as
+** arg_size (calcuated by a combination of the specifier and the
+** length modifier, see `g_type_table[N_SPECIFIERS][9]`).
+*/
 
 #define SIZE_0(x) if (x == 1) {return (funct->function(format));}
 #define SIZE_1(x) if (x == 1) {return (funct->function(format, ARG_SIZE_1));}

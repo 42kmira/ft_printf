@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 21:32:07 by kmira             #+#    #+#             */
-/*   Updated: 2019/08/19 02:10:06 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/21 03:28:22 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,5 @@ t_string	perc_handler(t_format *format, ...)
 	if (result.output[i] == '1')
 		result.output[i] = '%';
 	result.length = ft_strlen(result.output);
-	result.free = TRUE;
 	return (result);
 }

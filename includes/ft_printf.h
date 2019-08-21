@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 18:09:42 by kmira             #+#    #+#             */
-/*   Updated: 2019/08/19 02:08:00 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/19 19:49:59 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,6 @@
 # ifndef EXIT
 #  define EXIT(error_msg) ft_puterror(error_msg)
 # endif
-
-# define NEITHER 0
-# define RIGHT 1
-# define LEFT 2
-# define BOTH 3
 
 int			ft_printf(const char *format, ...);
 
@@ -89,15 +84,6 @@ void		precision_padding(t_format *format, t_string *dst);
 uintmax_t	correct_number(uintmax_t val, int signed_bit, int len, int *sign);
 t_string	precision(t_format *form, long double val, char **buff, int *sign);
 void		handle_float_flags(t_format *format, t_string *string, int sign);
-
-/*
-** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
-** DIRECTORY: conversions
-** Directory that has the files to handle the different conversions.
-*/
-
-char		*append(char *a, char *b, char free);
-void		upper_case_string(char *string);
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-

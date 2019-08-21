@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 14:32:09 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/16 18:54:05 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/19 18:55:03 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@
 # ifndef NUM_SET
 #  define NUM_SET "0123456789abcdef"
 # endif
+
+# define FREE_NEITHER 0
+# define FREE_RIGHT 1
+# define FREE_LEFT 2
+# define FREE_BOTH 3
 
 /*
 ** PART I
@@ -124,6 +129,8 @@ int					ft_islower(int c);
 int					ft_isupper(int c);
 void				ft_puterror(char const *s);
 char				*ft_strrev(char *string);
-char				*ft_ntoa(uintmax_t value, int signed_bit, int length, char *symbols, size_t base);
+char				*ft_append(char *right, char *left, char str_free);
+void				ft_strlwr(char *string);
+void				ft_strupr(char *string);
 
 #endif

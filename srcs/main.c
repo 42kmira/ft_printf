@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 17:59:46 by kmira             #+#    #+#             */
-/*   Updated: 2019/08/07 22:45:37 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/21 02:44:54 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int		convert(const char *format, size_t *index, va_list args)
 		return (1);
 	converted_string = do_function(&function, arg_size, &formatter, args);
 	write(1, converted_string.output, converted_string.length);
+	if (converted_string.free == TRUE)
+		free(converted_string.output);
 	*index = *index + 1;
 	return (converted_string.length);
 }
@@ -55,5 +57,6 @@ int		ft_printf(const char *format, ...)
 			result += convert(format, &i, args);
 	}
 	va_end(args);
+	system("leaks test.out");
 	return (result);
 }

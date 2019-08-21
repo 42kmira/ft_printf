@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 11:17:49 by kmira             #+#    #+#             */
-/*   Updated: 2019/08/19 01:55:43 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/19 02:24:49 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,10 @@ int			extract_number(const char *format, size_t *index)
 
 int			extract_precision(const char *format_string, size_t *index)
 {
-	int result;
-
-	result = 0;
 	if (format_string[*index] == '.')
 	{
 		*index = *index + 1;
-		result = extract_number(format_string, index);
-		return (result);
+		return (extract_number(format_string, index));
 	}
 	else
 		return (-1);

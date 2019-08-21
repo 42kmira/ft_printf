@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 19:02:30 by kmira             #+#    #+#             */
-/*   Updated: 2019/08/16 16:59:23 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/20 14:40:22 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ typedef union			u_spec_functs
 	t_string			(*c_handler)(t_format *format, int c);
 	t_string			(*s_handler)(t_format *format, char *string);
 	t_string			(*p_handler)(t_format *format, void *pointer);
-	t_string			(*d_handler)(t_format *format, long long value);
+	t_string			(*d_handler)(t_format *format, long long val);
 	t_string			(*u_handler)(t_format *format, unsigned long long val);
 	t_string			(*x_handler)(t_format *format, unsigned long long val);
 	t_string			(*o_handler)(t_format *format, unsigned long long val);

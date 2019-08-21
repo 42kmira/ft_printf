@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 20:57:02 by kmira             #+#    #+#             */
-/*   Updated: 2019/08/19 02:10:19 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/21 03:31:46 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,7 @@ t_string	x_handler(t_format *format, unsigned long long value)
 	apply_flags_part_2(format, &result, value, sign);
 	apply_flags_part_3(format, &result, value, sign);
 	if (format->specifier[0] == 'X')
-		upper_case_string(result.output);
+		ft_strupr(result.output);
 	result.length = ft_strlen(result.output);
-	result.free = TRUE;
 	return (result);
 }

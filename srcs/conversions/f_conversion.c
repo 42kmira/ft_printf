@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 20:55:14 by kmira             #+#    #+#             */
-/*   Updated: 2019/08/19 00:36:02 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/21 02:41:49 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,22 +42,20 @@ void		round_float(t_format *format, t_string *string)
 void		use_flags(t_format *format, t_string *string, int sign)
 {
 	if (string->output[0] == '.')
-		string->output = append("0", string->output, NEITHER);
+		string->output = ft_append("0", string->output, FREE_RIGHT);
 	if (format->flags & MINUS_FLAG)
 		format->flags = format->flags & ~ZERO_FLAG;
-	if (format->flags & PLUS_FLAG)
-		format->flags = format->flags & ~SPACE_FLAG;
 	string->length = ft_strlen(string->output);
 	if (format->flags & ZERO_FLAG && (format->flags & PLUS_FLAG || sign))
 		format->width = format->width - 1;
 	if (!(format->flags & ZERO_FLAG))
 	{
 		if (sign == 1)
-			string->output = append("-", string->output, NEITHER);
+			string->output = ft_append("-", string->output, FREE_NEITHER);
 		else if (format->flags & PLUS_FLAG)
-			string->output = append("+", string->output, NEITHER);
+			string->output = ft_append("+", string->output, FREE_NEITHER);
 		else if (format->flags & SPACE_FLAG)
-			string->output = append(" ", string->output, NEITHER);
+			string->output = ft_append(" ", string->output, FREE_NEITHER);
 		string->length = ft_strlen(string->output);
 	}
 }
@@ -68,18 +66,18 @@ void		float_padding(t_format *format, t_string *string, int sign)
 
 	padding_ptr = malloc(sizeof(*padding_ptr) * (format->width + 1));
 	ft_bzero(padding_ptr, format->width + 1);
-	string->output = combine_padding(string->output,format);
+	string->output = combine_padding(string->output, format);
 	if (format->flags & ZERO_FLAG)
 	{
 		if (sign == 1)
-			string->output = append("-", string->output, NEITHER);
+			string->output = ft_append("-", string->output, FREE_NEITHER);
 		else if (format->flags & PLUS_FLAG)
-			string->output = append("+", string->output, NEITHER);
+			string->output = ft_append("+", string->output, FREE_NEITHER);
 		else if (format->flags & SPACE_FLAG && string->output[0] == '0'
 				&& string->output[1] == '0')
 			string->output[0] = ' ';
 		else if (format->flags & SPACE_FLAG)
-			string->output = append(" ", string->output, NEITHER);
+			string->output = ft_append(" ", string->output, FREE_NEITHER);
 	}
 }
 
@@ -112,27 +110,22 @@ void		handle_float_flags(t_format *format, t_string *string, int sign)
 	float_padding(format, string, sign);
 }
 
+/*
+** The 1023 would be the max a number can be for a float.
+** It might also be incorrect.
+** This however does not account for width size or big precision size.
+*/
+
 t_string	f_handler_double(t_format *format, double value)
 {
 	t_string	result;
 	char		*buffer;
-	char		buffer_fixed[1023 + 50 + 1];
 	int			sign;
 
-	if (format->precision < 1023 + 50)
-	{
-		ft_bzero(buffer_fixed, sizeof(buffer_fixed));
-		buffer = buffer_fixed;
-	}
-	else
-	{
-		buffer = malloc(sizeof(*buffer) * (format->precision + 1023));
-		ft_bzero(buffer, format->precision + 1023);
-	}
+	buffer = malloc(sizeof(*buffer) * (format->precision + 1023));
+	ft_bzero(buffer, format->precision + 1023);
 	result = precision(format, value, &buffer, &sign);
 	result.length = ft_strlen(result.output);
-	if (format->precision != -1)
-		format->precision = format->precision;
 	if (format->precision == -1)
 		format->precision = 6;
 	handle_float_flags(format, &result, sign);

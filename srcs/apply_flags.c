@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/17 16:03:10 by kmira             #+#    #+#             */
-/*   Updated: 2019/08/19 02:14:41 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/21 03:17:45 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,31 @@ void		precision_padding(t_format *format, t_string *dst)
 		ft_memset(dst->output, '0', format->precision);
 }
 
+/*
+** Here we have to turn the number positive if the signed bit is turned on.
+** Positive and negative numbers have different bit signatures (see two's
+** complement).
+** However in order to do this we have to either multiply by -1 or using
+** 2's complement do `val = ~(val) + 1`.
+** However note that doing this will also affect the other bits in the number,
+** that go beyond the the bit length of the number. This causes an error in the
+** number that we have to selectively correct. In order to fix this
+** we have a 'filter' mask that only allows the bits within the correct
+** bit length to pass through, resulting in the correct positive number.
+*/
+
 uintmax_t	correct_number(uintmax_t val, int signed_bit, int length, int *sign)
 {
 	uintmax_t	mask;
 
 	*sign = 0;
 	mask = signed_mask_p(length);
-	if (signed_bit != 0)
-	{
-		*sign = (val & (1ULL << (signed_bit * 8 - 1))) ? 1 : 0;
-		if (*sign)
-			val = val * -1;
-	}
+	if (signed_bit >= 0)
+		if (val & (1ULL << (signed_bit * 8 - 1)))
+		{
+			*sign = 1;
+			val = ~(val) + 1;
+		}
 	val = val & mask;
 	return (val);
 }
@@ -67,6 +80,7 @@ char		*combine_padding(char *string, t_format *format)
 			padding[i + offset] = string[i];
 			i++;
 		}
+		free(string);
 		return (padding);
 	}
 	return (string);
@@ -79,21 +93,21 @@ void		apply_flags_part_2(t_format *format, t_string *result, long long val, int 
 		result->output[0] = '\0';
 	result->length = ft_strlen(result->output);
 	if (format->specifier[0] == 'p')
-		result->output = append("0x", result->output, LEFT);
+		result->output = ft_append("0x", result->output, FREE_LEFT);
 	if (format->flags & HASH_FLAG && val != 0 && !(format->flags & ZERO_FLAG) &&
 		(format->specifier[0] == 'x' || format->specifier[0] == 'X'))
-		result->output = append("0x", result->output, LEFT);
+		result->output = ft_append("0x", result->output, FREE_LEFT);
 	if (!(format->flags & ZERO_FLAG) || format->width - 1 <= result->length)
 	{
 		if (format->flags & HASH_FLAG && (format->specifier[0] == 'o'))
 			if (result->output[0] != '0')
-				result->output = append("0", result->output, LEFT);
+				result->output = ft_append("0", result->output, FREE_LEFT);
 		if (sign)
-			result->output = append("-", result->output, LEFT);
+			result->output = ft_append("-", result->output, FREE_LEFT);
 		else if (format->flags & PLUS_FLAG)
-			result->output = append("+", result->output, LEFT);
+			result->output = ft_append("+", result->output, FREE_LEFT);
 		else if (format->flags & SPACE_FLAG)
-			result->output = append(" ", result->output, LEFT);
+			result->output = ft_append(" ", result->output, FREE_LEFT);
 		result->length = ft_strlen(result->output);
 	}
 	result->output = combine_padding(result->output, format);
@@ -113,13 +127,13 @@ void		apply_flags_part_3(t_format *format, t_string *result, long long value, in
 		{
 			if (format->specifier[0] == 'o')
 				if (result->output[0] != '0')
-					result->output = append("0", result->output, LEFT);
+					result->output = ft_append("0", result->output, FREE_LEFT);
 			if (format->specifier[0] == 'x' || format->specifier[0] == 'X')
 			{
 				if (result->output[0] == '0')
 					result->output[1] = 'x';
 				else
-					result->output = append("0x", result->output, LEFT);
+					result->output = ft_append("0x", result->output, FREE_LEFT);
 			}
 		}
 	}
