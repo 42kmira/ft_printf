@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 20:55:14 by kmira             #+#    #+#             */
-/*   Updated: 2019/08/21 02:41:49 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/21 03:42:19 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ void		use_flags(t_format *format, t_string *string, int sign)
 	if (!(format->flags & ZERO_FLAG))
 	{
 		if (sign == 1)
-			string->output = ft_append("-", string->output, FREE_NEITHER);
+			string->output = ft_append("-", string->output, FREE_RIGHT);
 		else if (format->flags & PLUS_FLAG)
-			string->output = ft_append("+", string->output, FREE_NEITHER);
+			string->output = ft_append("+", string->output, FREE_RIGHT);
 		else if (format->flags & SPACE_FLAG)
-			string->output = ft_append(" ", string->output, FREE_NEITHER);
+			string->output = ft_append(" ", string->output, FREE_RIGHT);
 		string->length = ft_strlen(string->output);
 	}
 }
@@ -70,14 +70,14 @@ void		float_padding(t_format *format, t_string *string, int sign)
 	if (format->flags & ZERO_FLAG)
 	{
 		if (sign == 1)
-			string->output = ft_append("-", string->output, FREE_NEITHER);
+			string->output = ft_append("-", string->output, FREE_RIGHT);
 		else if (format->flags & PLUS_FLAG)
-			string->output = ft_append("+", string->output, FREE_NEITHER);
+			string->output = ft_append("+", string->output, FREE_RIGHT);
 		else if (format->flags & SPACE_FLAG && string->output[0] == '0'
 				&& string->output[1] == '0')
 			string->output[0] = ' ';
 		else if (format->flags & SPACE_FLAG)
-			string->output = ft_append(" ", string->output, FREE_NEITHER);
+			string->output = ft_append(" ", string->output, FREE_RIGHT);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/17 16:03:10 by kmira             #+#    #+#             */
-/*   Updated: 2019/08/21 03:17:45 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/21 03:38:20 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,21 +93,21 @@ void		apply_flags_part_2(t_format *format, t_string *result, long long val, int 
 		result->output[0] = '\0';
 	result->length = ft_strlen(result->output);
 	if (format->specifier[0] == 'p')
-		result->output = ft_append("0x", result->output, FREE_LEFT);
+		result->output = ft_append("0x", result->output, FREE_RIGHT);
 	if (format->flags & HASH_FLAG && val != 0 && !(format->flags & ZERO_FLAG) &&
 		(format->specifier[0] == 'x' || format->specifier[0] == 'X'))
-		result->output = ft_append("0x", result->output, FREE_LEFT);
+		result->output = ft_append("0x", result->output, FREE_RIGHT);
 	if (!(format->flags & ZERO_FLAG) || format->width - 1 <= result->length)
 	{
 		if (format->flags & HASH_FLAG && (format->specifier[0] == 'o'))
 			if (result->output[0] != '0')
-				result->output = ft_append("0", result->output, FREE_LEFT);
+				result->output = ft_append("0", result->output, FREE_RIGHT);
 		if (sign)
-			result->output = ft_append("-", result->output, FREE_LEFT);
+			result->output = ft_append("-", result->output, FREE_RIGHT);
 		else if (format->flags & PLUS_FLAG)
-			result->output = ft_append("+", result->output, FREE_LEFT);
+			result->output = ft_append("+", result->output, FREE_RIGHT);
 		else if (format->flags & SPACE_FLAG)
-			result->output = ft_append(" ", result->output, FREE_LEFT);
+			result->output = ft_append(" ", result->output, FREE_RIGHT);
 		result->length = ft_strlen(result->output);
 	}
 	result->output = combine_padding(result->output, format);
@@ -127,13 +127,13 @@ void		apply_flags_part_3(t_format *format, t_string *result, long long value, in
 		{
 			if (format->specifier[0] == 'o')
 				if (result->output[0] != '0')
-					result->output = ft_append("0", result->output, FREE_LEFT);
+					result->output = ft_append("0", result->output, FREE_RIGHT);
 			if (format->specifier[0] == 'x' || format->specifier[0] == 'X')
 			{
 				if (result->output[0] == '0')
 					result->output[1] = 'x';
 				else
-					result->output = ft_append("0x", result->output, FREE_LEFT);
+					result->output = ft_append("0x", result->output, FREE_RIGHT);
 			}
 		}
 	}
