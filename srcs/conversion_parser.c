@@ -6,13 +6,14 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 11:17:49 by kmira             #+#    #+#             */
-/*   Updated: 2019/08/19 02:24:49 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/22 00:23:38 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-extern int g_flag_table[N_FLAGS][2];
+extern int		g_flag_table[N_FLAGS][2];
+extern t_length	g_length_table[6];
 
 int			extract_flags(const char *format_string, size_t *index)
 {
@@ -61,20 +62,18 @@ int			extract_precision(const char *format_string, size_t *index)
 
 int			extract_length(const char *format_string, size_t *index)
 {
-	*index = *index + 2;
-	if (format_string[*index - 2] == 'h' && format_string[*index - 1] == 'h')
-		return (HH);
-	else if (format_string[*index - 2] == 'l'
-			&& format_string[*index - 1] == 'l')
-		return (LL);
-	*index = *index - 1;
-	if (format_string[*index - 1] == 'h')
-		return (H);
-	else if (format_string[*index - 1] == 'l')
-		return (L);
-	else if (format_string[*index - 1] == 'L')
-		return (XL);
-	*index = *index - 1;
+	int i;
+
+	i = 0;
+	while (g_length_table[i].str[0] != '\0')
+	{
+		if (ft_strncmp(g_length_table[i].str, &format_string[*index], ft_strlen(g_length_table[i].str)) == 0)
+		{
+			*index = *index + ft_strlen(g_length_table[i].str);
+			return (g_length_table[i].length);
+		}
+		i++;
+	}
 	return (_DEF_);
 }
 

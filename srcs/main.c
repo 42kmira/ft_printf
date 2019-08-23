@@ -6,12 +6,43 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 17:59:46 by kmira             #+#    #+#             */
-/*   Updated: 2019/08/21 02:44:54 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/22 02:59:09 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "../libft/libft.h"
+
+#define BUFFER 5000
+
+void	buffer_output(const char *str, int length, int final)
+{
+	static char		buff[BUFFER];
+	static int		location;
+	int				offset;
+	int				i;
+
+	i = 0;
+	offset = 0;
+	while (i < length)
+	{
+		if (location + offset == BUFFER)
+		{
+			write(1, buff, location + offset);
+			ft_bzero(buff, BUFFER);
+			location = 0;
+			offset = 0;
+		}
+		buff[location + offset++] = str[i++];
+	}
+	location = location + offset;
+	if (final == 1 && location != 0)
+	{
+		write(1, buff, location);
+		ft_bzero(buff, BUFFER);
+		location = 0;
+	}
+}
 
 int		convert(const char *format, size_t *index, va_list args)
 {
@@ -28,7 +59,7 @@ int		convert(const char *format, size_t *index, va_list args)
 	if (arg_size == -1)
 		return (1);
 	converted_string = do_function(&function, arg_size, &formatter, args);
-	write(1, converted_string.output, converted_string.length);
+	buffer_output(converted_string.output, converted_string.length, 0);
 	if (converted_string.free == TRUE)
 		free(converted_string.output);
 	*index = *index + 1;
@@ -50,13 +81,13 @@ int		ft_printf(const char *format, ...)
 		j = 0;
 		while (format[j + i] != '\0' && format[j + i] != '%')
 			j++;
-		write(1, &(format[i]), j);
+		buffer_output(&(format[i]), j, 0);
 		result = result + j;
 		i = i + j;
 		if (format[i] == '%')
 			result += convert(format, &i, args);
 	}
 	va_end(args);
-	system("leaks test.out");
+	buffer_output("", 0, 1);
 	return (result);
 }

@@ -6,11 +6,13 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 20:55:14 by kmira             #+#    #+#             */
-/*   Updated: 2019/08/21 03:42:19 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/22 02:38:34 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+#include <stdio.h>
 
 void		round_float(t_format *format, t_string *string)
 {
@@ -19,7 +21,7 @@ void		round_float(t_format *format, t_string *string)
 	int carry;
 
 	i = 0;
-	while (string->output[i] != '.')
+	while (string->output[i] != '\0' && string->output[i] != '.')
 		i++;
 	round_begin = i + format->precision + 1;
 	carry = 0;
@@ -45,7 +47,6 @@ void		use_flags(t_format *format, t_string *string, int sign)
 		string->output = ft_append("0", string->output, FREE_RIGHT);
 	if (format->flags & MINUS_FLAG)
 		format->flags = format->flags & ~ZERO_FLAG;
-	string->length = ft_strlen(string->output);
 	if (format->flags & ZERO_FLAG && (format->flags & PLUS_FLAG || sign))
 		format->width = format->width - 1;
 	if (!(format->flags & ZERO_FLAG))
@@ -87,17 +88,11 @@ void		handle_float_flags(t_format *format, t_string *string, int sign)
 	int		i;
 
 	j = 0;
-	while (j < string->length && string->output[j] == '0')
-		j++;
-	if (string->output[j] == '.')
-		j--;
-	ft_memmove(string->output, &(string->output[j]), string->length);
-	j = 0;
 	while (string->output[j] != '\0' && string->output[j] != '.')
 		j++;
 	if (format->precision != 0 && string->output[j] != '.')
 		string->output[j] = '.';
-	j = (string->output[j] == '.' ? j + 1 : j);
+	j++;
 	i = -1;
 	while (++i < format->precision)
 		if (string->output[i + j] == '\0')
@@ -111,7 +106,9 @@ void		handle_float_flags(t_format *format, t_string *string, int sign)
 }
 
 /*
-** The 1023 would be the max a number can be for a float.
+** The 1023 would be bias in the exponent for a double, the 54 would be
+** the length of the mantissa. The total is in theory the largest buffer
+** needed to store the largest number.
 ** It might also be incorrect.
 ** This however does not account for width size or big precision size.
 */
@@ -122,12 +119,13 @@ t_string	f_handler_double(t_format *format, double value)
 	char		*buffer;
 	int			sign;
 
-	buffer = malloc(sizeof(*buffer) * (format->precision + 1023));
-	ft_bzero(buffer, format->precision + 1023);
-	result = precision(format, value, &buffer, &sign);
+	buffer = malloc(sizeof(*buffer) * (format->precision + 1023 + 54));
+	ft_bzero(buffer, format->precision + 1023 + 54);
+	result = make_float_number(format, value, &buffer, &sign);
 	result.length = ft_strlen(result.output);
 	if (format->precision == -1)
 		format->precision = 6;
+	normalize_float(&result);
 	handle_float_flags(format, &result, sign);
 	result.length = ft_strlen(result.output);
 	return (result);

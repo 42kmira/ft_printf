@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 20:56:23 by kmira             #+#    #+#             */
-/*   Updated: 2019/08/21 03:31:34 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/21 21:16:39 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,3 @@ t_string	u_handler(t_format *format, unsigned long long value)
 	result.length = ft_strlen(result.output);
 	return (result);
 }
-

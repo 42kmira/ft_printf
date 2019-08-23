@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 18:09:42 by kmira             #+#    #+#             */
-/*   Updated: 2019/08/19 19:49:59 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/22 00:50:33 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@
 # include "ft_printf_structs.h"
 # include "color.h"
 
-# include "debug.h"
-
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
 ** MACROS
@@ -35,8 +33,6 @@
 
 # define FORMAT 0
 # define OUTPUT 1
-
-# define N_SPECIFIERS 12
 
 # define NULL_TERM 0
 
@@ -72,17 +68,22 @@ t_format	extract_format(const char *format_string, size_t *index);
 ** Uses the flags in the struct t_format.
 */
 
-void		apply_flags_part_2(t_format *format, t_string *result, long long value, int sign);
-void		apply_flags_part_3(t_format *format, t_string *result, long long value, int sign);
+void		apply_flags_part_2
+			(t_format *format, t_string *result, long long value, int sign);
+void		apply_flags_part_3
+			(t_format *format, t_string *result, long long value, int sign);
 
 void		make_number(uintmax_t num, char *symb, size_t base, t_string *dst);
 void		override_flags(t_format *format);
 char		*combine_padding(char *string, t_format *format);
+void		buffer_fix(char **buffer, int exp);
 
 uintmax_t	signed_mask_p(int signed_bit);
 void		precision_padding(t_format *format, t_string *dst);
 uintmax_t	correct_number(uintmax_t val, int signed_bit, int len, int *sign);
-t_string	precision(t_format *form, long double val, char **buff, int *sign);
+void		normalize_float(t_string *string);
+t_string	make_float_number
+			(t_format *form, long double val, char **buff, int *sign);
 void		handle_float_flags(t_format *format, t_string *string, int sign);
 
 /*

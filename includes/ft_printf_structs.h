@@ -6,25 +6,39 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 19:02:30 by kmira             #+#    #+#             */
-/*   Updated: 2019/08/20 14:40:22 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/22 00:55:41 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_STRUCTS_H
 # define FT_PRINTF_STRUCTS_H
 
-enum	e_specifier
+# define N_LENGTH_TYPES 6
+
+typedef struct			s_length
 {
-	SP_D = 'd',
-	SP_I = 'i',
-	SP_U = 'u',
-	SP_O = 'o',
-	SP_X = 'x',
-	SP_F = 'f',
-	SP_C = 'c',
-	SP_S = 's',
-	SP_P = 'p',
-	SP_PERC = '%',
+	char				*str;
+	int					length;
+}						t_length;
+
+enum					e_length_types
+{
+	_DEF_ = 1,
+	HH = 2,
+	H = 3,
+	L = 4,
+	LL = 5,
+	XL = 6
+};
+
+static t_length	g_length_table[6] =
+{
+	{"hh", HH},
+	{"h", H},
+	{"ll", LL},
+	{"l", L},
+	{"L", XL},
+	{"", _DEF_}
 };
 
 enum				e_type_size
@@ -47,16 +61,37 @@ enum				e_type_size
 	VOID_P = sizeof(void *)
 };
 
-# define N_LENGTH_TYPES 6
-
-enum					e_length_types
+enum	e_specifier
 {
-	_DEF_ = 1,
-	HH = 2,
-	H = 3,
-	L = 4,
-	LL = 5,
-	XL = 6
+	SP_D = 'd',
+	SP_I = 'i',
+	SP_U = 'u',
+	SP_O = 'o',
+	SP_X = 'x',
+	SP_F = 'f',
+	SP_C = 'c',
+	SP_S = 's',
+	SP_P = 'p',
+	SP_PERC = '%',
+	SP_K = 'k'
+};
+
+# define N_SPECIFIERS 12
+
+static int		g_type_table[N_SPECIFIERS][9] =
+{
+	{-1, _DEF_, HH, H, L, LL, XL},
+	{SP_D, INT, S_CHAR, SHORT, LONG, LLONG, -1},
+	{SP_I, INT, S_CHAR, SHORT, LONG, LLONG, -1},
+	{SP_U, U_INT, U_CHAR, U_SHORT, U_LONG, U_LLONG, -1},
+	{SP_O, U_INT, U_CHAR, U_SHORT, U_LONG, U_LLONG, -1},
+	{SP_X, U_INT, U_CHAR, U_SHORT, U_LONG, U_LLONG, -1},
+	{SP_F, DOUB, -1, -1, -1, -1, L_DOUB},
+	{SP_C, INT, -1, -1, -1, -1, -1},
+	{SP_S, STR, -1, -1, -1, -1, -1},
+	{SP_P, VOID_P, -1, -1, -1, -1, -1},
+	{SP_PERC, 0, -1, -1, -1, -1, -1},
+	{0, 0, 0, 0, 0, 0, 0}
 };
 
 # define N_FLAGS 6
@@ -69,6 +104,16 @@ enum					e_printf_flags
 	SPACE_FLAG = 0b00100,
 	HASH_FLAG = 0b01000,
 	ZERO_FLAG = 0b10000
+};
+
+static int		g_flag_table[N_FLAGS][2] =
+{
+	{'-', MINUS_FLAG},
+	{'+', PLUS_FLAG},
+	{' ', SPACE_FLAG},
+	{'#', HASH_FLAG},
+	{'0', ZERO_FLAG},
+	{'\0', NON_FLAG}
 };
 
 typedef struct			s_format

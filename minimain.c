@@ -6,13 +6,14 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 18:25:33 by kmira             #+#    #+#             */
-/*   Updated: 2019/08/21 02:52:14 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/22 02:37:21 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "color.h"
 #include "float.h"
+#include <stdio.h>
 
 int mine_result;
 int syst_result;
@@ -27,7 +28,7 @@ int syst_result;
 
 int	main(void)
 {
-	ft_printf(BOLDWHITE"!!!!!!!!!"BOLDCYAN"NEW TEST FRAME STARTINGS"BOLDWHITE"!!!!!!!!!\n"COLOR_RESET"\n\n");
+	// ft_printf(BOLDWHITE"!!!!!!!!!"BOLDCYAN"NEW TEST FRAME STARTINGS"BOLDWHITE"!!!!!!!!!\n"COLOR_RESET"\n\n");
 	// VERIFY("TEST: %c", '\0');
 	// VERIFY("ONE TWO %s", "String");
 	// VERIFY("Testing %% Three two one %%");
@@ -186,10 +187,10 @@ int	main(void)
 
 	// VERIFY("%#05x", 43);
 
-	VERIFY("%-7s\n", "Test");
-	VERIFY("%7s\n", "Test");
+	// VERIFY("%-7s\n", "Test");
+	// VERIFY("%7s\n", "Test");
 
-
+	VERIFY("%.0f", 1.0);
 	// VERIFY("%05.0f", 7.3);
 	// VERIFY("%05.1f", 7.3);
 	// VERIFY("%05.0f", -7.3);

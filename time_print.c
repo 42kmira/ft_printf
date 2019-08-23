@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 09:04:05 by kmira             #+#    #+#             */
-/*   Updated: 2019/08/07 22:46:33 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/22 03:30:56 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 #include "ft_printf.h"
 #include "color.h"
 
-#define STOP 5000
+#include <stdio.h>
+
+#define STOP 80000
 
 int		main(void)
 {
@@ -30,7 +32,7 @@ int		main(void)
 	start = clock();
 	while (i < STOP)
 	{
-		printf("[SYST]: This test numbs: %d\n", i);
+		printf("[SYST]: This test numbs: %200d and this one %s and for %f\n", i, "Super Star", 2.0);
 		i++;
 	}
 	end = clock();
@@ -40,7 +42,7 @@ int		main(void)
 	start = clock();
 	while (i < STOP)
 	{
-		ft_printf("[MINE]: This test numbs: %d\n", i);
+		ft_printf("[MINE]: This test numbs: %200d and this one %s and for %f\n", i, "Super Star", 2.0);
 		i++;
 	}
 	end = clock();
@@ -60,6 +62,6 @@ int		main(void)
 	end = clock();
 	cpu_time_c = ((double)(end - start)) / CLOCKS_PER_SEC;
 
-	printf("TIME USED: %f and %f, vs %f", cpu_time_a, cpu_time_b, cpu_time_c);
+	printf("TIME USED: SYST: %f and MINE: %f, vs BASE: %f", cpu_time_a, cpu_time_b, cpu_time_c);
 	return (1);
 }

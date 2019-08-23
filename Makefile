@@ -6,7 +6,7 @@
 #    By: kmira <kmira@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/07 18:32:39 by kmira             #+#    #+#              #
-#    Updated: 2019/08/19 02:15:05 by kmira            ###   ########.fr        #
+#    Updated: 2019/08/22 00:46:57 by kmira            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,6 @@ MAIN_FILES = \
 		apply_flags \
 		args_tools \
 		conversion_parser \
-		global_structs \
 		main \
 		utils \
 

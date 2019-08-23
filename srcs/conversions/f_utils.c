@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 02:15:47 by kmira             #+#    #+#             */
-/*   Updated: 2019/08/21 02:00:57 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/21 21:20:43 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,6 @@
 
 #define DOUB_EXP_BIAS 1023
 #define LONG_EXP_BIAS 16383
-
-void		buffer_fix(char **buffer, int exp)
-{
-	char	*buff;
-
-	if (-exp > 1000)
-	{
-		buff = malloc(sizeof(*buff) * (-exp + 1));
-		ft_bzero(buff, -exp + 1);
-		ft_strcpy(buff, *buffer);
-		free(*buffer);
-		*buffer = buff;
-	}
-}
 
 void		divide_string(char *base, char **buffer, int exp)
 {
@@ -99,7 +85,8 @@ void		make_longer(t_string *string, int exp, char **buff)
 	string->output = *buff;
 }
 
-t_string	precision(t_format *format, long double val, char **buff, int *sign)
+t_string	make_float_number
+	(t_format *format, long double val, char **buff, int *sign)
 {
 	union u_ieee2bits	bits;
 	int					exp;
@@ -125,4 +112,16 @@ t_string	precision(t_format *format, long double val, char **buff, int *sign)
 	make_number(num, "0123456789", 10, &string);
 	make_longer(&string, exp, buff);
 	return (string);
+}
+
+void		normalize_float(t_string *string)
+{
+	int i;
+
+	i = 0;
+	while (i < string->length && string->output[i] == '0')
+		i++;
+	if (string->output[i] == '.')
+		i--;
+	ft_memmove(string->output, &(string->output[i]), string->length);
 }

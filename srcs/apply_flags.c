@@ -6,11 +6,17 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/17 16:03:10 by kmira             #+#    #+#             */
-/*   Updated: 2019/08/21 03:38:20 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/22 00:00:30 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+/*
+** The length of the string shall be enough to fit at least one
+** character for every bit in the biggest type (uintmax_t) or
+** the given precision, whichever of the two is larger.
+*/
 
 void		precision_padding(t_format *format, t_string *dst)
 {
@@ -73,8 +79,7 @@ char		*combine_padding(char *string, t_format *format)
 			ft_memset(padding, '0', format->width);
 		i = 0;
 		offset = (format->width - length_b);
-		if (format->flags & MINUS_FLAG)
-			offset = 0;
+		offset = (format->flags & MINUS_FLAG) ? 0 : offset;
 		while (i < length_b)
 		{
 			padding[i + offset] = string[i];
@@ -86,7 +91,8 @@ char		*combine_padding(char *string, t_format *format)
 	return (string);
 }
 
-void		apply_flags_part_2(t_format *format, t_string *result, long long val, int sign)
+void		apply_flags_part_2
+	(t_format *format, t_string *result, long long val, int sign)
 {
 	ft_strrev(result->output);
 	if (format->precision == 0 && val == 0)
@@ -113,7 +119,8 @@ void		apply_flags_part_2(t_format *format, t_string *result, long long val, int 
 	result->output = combine_padding(result->output, format);
 }
 
-void		apply_flags_part_3(t_format *format, t_string *result, long long value, int sign)
+void		apply_flags_part_3
+	(t_format *format, t_string *result, long long value, int sign)
 {
 	if (format->flags & ZERO_FLAG)
 	{
@@ -133,7 +140,8 @@ void		apply_flags_part_3(t_format *format, t_string *result, long long value, in
 				if (result->output[0] == '0')
 					result->output[1] = 'x';
 				else
-					result->output = ft_append("0x", result->output, FREE_RIGHT);
+					result->output =
+					ft_append("0x", result->output, FREE_RIGHT);
 			}
 		}
 	}
