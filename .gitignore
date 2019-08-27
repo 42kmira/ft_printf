@@ -5,3 +5,7 @@ DOCS\*
 *.dSYM
 .DS_Store
 pft/
+pft_eric/
+.gitignore
+a.out
+*.a

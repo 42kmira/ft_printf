@@ -6,18 +6,19 @@
 #    By: kmira <kmira@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/07 18:32:39 by kmira             #+#    #+#              #
-#    Updated: 2019/08/22 00:46:57 by kmira            ###   ########.fr        #
+#    Updated: 2019/08/22 22:04:39 by kmira            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-FLAGS = -Wall -Wextra -Werror -O2
+FLAGS = -Wall -Wextra -Werror
 
 INCLUDES = includes
 LIBRARY = libft/libft.a
 
 CONVERSION_FILES = \
+		b_conversion \
 		c_conversion \
 		d_conversion \
 		f_conversion \

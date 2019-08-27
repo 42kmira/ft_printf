@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 19:32:48 by kmira             #+#    #+#             */
-/*   Updated: 2019/08/22 00:45:29 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/22 21:53:55 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ extern int g_type_table[N_SPECIFIERS][9];
 
 #define SPECIFIER 0
 
-int			get_arguement_size(int specifier, int length)
+int			get_argument_size(int specifier, int length)
 {
 	int i;
 
@@ -56,14 +56,16 @@ void		set_specifier_handler(t_spec_functs *function, const char *spec)
 		function->f_handler_long = f_handler_long;
 	if (spec[0] == '%')
 		function->perc_handler = perc_handler;
+	if (spec[0] == 'b')
+		function->b_handler = b_handler;
 }
 
-#define ARG_SIZE_1 (unsigned char)va_arg(args, unsigned int)
-#define ARG_SIZE_2 (unsigned short)va_arg(args, unsigned int)
-#define ARG_SIZE_4 va_arg(args, unsigned int)
-#define ARG_SIZE_8 va_arg(args, unsigned long long)
-#define ARG_SIZE_9 (double)va_arg(args, double)
-#define ARG_SIZE_16 (long double)va_arg(args, long double)
+#define ARG_SIZE_1 (unsigned char)va_arg(args, uint32_t)
+#define ARG_SIZE_2 (unsigned short)va_arg(args, uint32_t)
+#define ARG_SIZE_4 va_arg(args, uint32_t)
+#define ARG_SIZE_8 va_arg(args, uint64_t)
+#define ARG_SIZE_9 va_arg(args, double)
+#define ARG_SIZE_16 va_arg(args, long double)
 
 /*
 ** Based on the function that was set by set_specifier_handler()

@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 18:09:42 by kmira             #+#    #+#             */
-/*   Updated: 2019/08/22 00:50:33 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/22 21:52:32 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int			ft_printf(const char *format, ...);
 ** Handles things dealing with va_args, like fetching size arguement
 */
 
-int			get_arguement_size(int specifier, int length);
+int			get_argument_size(int specifier, int length);
 void		set_specifier_handler(t_spec_functs *funct, const char *specifier);
 t_string	do_function
 (t_spec_functs *funct, int arg_size, t_format *format, va_list args);
@@ -98,6 +98,7 @@ t_string	p_handler(t_format *format, void *pointer);
 t_string	d_handler(t_format *format, long long value);
 t_string	i_handler(t_format *format, long long value);
 t_string	u_handler(t_format *format, unsigned long long value);
+t_string	b_handler(t_format *format, unsigned long long value);
 t_string	x_handler(t_format *format, unsigned long long value);
 t_string	o_handler(t_format *format, unsigned long long value);
 t_string	f_handler_double(t_format *format, double value);

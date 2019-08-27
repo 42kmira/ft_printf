@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 09:04:05 by kmira             #+#    #+#             */
-/*   Updated: 2019/08/22 03:30:56 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/22 22:06:27 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 #include <stdio.h>
 
-#define STOP 80000
+#define STOP 16000
 
 int		main(void)
 {
@@ -32,7 +32,7 @@ int		main(void)
 	start = clock();
 	while (i < STOP)
 	{
-		printf("[SYST]: This test numbs: %200d and this one %s and for %f\n", i, "Super Star", 2.0);
+		printf("[SYST]: This test numbs: %200d and this one %s and for\n", i, "Super Star");
 		i++;
 	}
 	end = clock();
@@ -42,7 +42,7 @@ int		main(void)
 	start = clock();
 	while (i < STOP)
 	{
-		ft_printf("[MINE]: This test numbs: %200d and this one %s and for %f\n", i, "Super Star", 2.0);
+		ft_printf("[MINE]: This test numbs: %200d and this one %s and for\n", i, "Super Star");
 		i++;
 	}
 	end = clock();
@@ -52,11 +52,11 @@ int		main(void)
 	start = clock();
 	while (i < STOP)
 	{
-		write(1, "4", 1);
-		write(1, "2", 1);
-		write(1, "\n", 1);
+		// write(1, "4", 1);
+		// write(1, "2", 1);
+		// write(1, "\n", 1);
 
-		// write(1, "42\n", 3);
+		write(1, "42\n", 3);
 		i++;
 	}
 	end = clock();

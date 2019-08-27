@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 10:57:18 by kmira             #+#    #+#             */
-/*   Updated: 2019/08/21 02:49:45 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/22 21:44:55 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ t_string	s_handler(t_format *format, char *string)
 		result.output = malloc(sizeof(*(result.output)) * (format->width));
 		result.free = TRUE;
 		ft_memset(result.output, ' ', format->width);
+		if (format->flags & ZERO_FLAG)
+			ft_memset(result.output, '0', format->width);
 		if (format->flags & MINUS_FLAG)
 			ft_strncpy(result.output, string, result.length);
 		else

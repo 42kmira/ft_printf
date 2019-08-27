@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 20:56:23 by kmira             #+#    #+#             */
-/*   Updated: 2019/08/21 21:16:39 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/22 20:16:27 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_string	u_handler(t_format *format, unsigned long long value)
 	int			sign;
 	int			arg_size;
 
-	arg_size = get_arguement_size(format->specifier[0], format->length);
+	arg_size = get_argument_size(format->specifier[0], format->length);
 	value = correct_number(value, 0, arg_size, &sign);
 	precision_padding(format, &result);
 	make_number(value, NUM_SET, 10, &result);

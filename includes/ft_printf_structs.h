@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 19:02:30 by kmira             #+#    #+#             */
-/*   Updated: 2019/08/22 00:55:41 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/25 18:11:42 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ enum				e_type_size
 	LLONG = sizeof(long long),
 	U_LLONG = sizeof(unsigned long long),
 	DOUB = sizeof(double) + 1,
+	TYPE_64 = sizeof(uint64_t),
 	L_DOUB = sizeof(long double),
 	STR = sizeof(char *),
 	VOID_P = sizeof(void *)
@@ -73,10 +74,10 @@ enum	e_specifier
 	SP_S = 's',
 	SP_P = 'p',
 	SP_PERC = '%',
-	SP_K = 'k'
+	SP_B = 'b'
 };
 
-# define N_SPECIFIERS 12
+# define N_SPECIFIERS 13
 
 static int		g_type_table[N_SPECIFIERS][9] =
 {
@@ -91,6 +92,7 @@ static int		g_type_table[N_SPECIFIERS][9] =
 	{SP_S, STR, -1, -1, -1, -1, -1},
 	{SP_P, VOID_P, -1, -1, -1, -1, -1},
 	{SP_PERC, 0, -1, -1, -1, -1, -1},
+	{SP_B, U_INT, U_CHAR, U_SHORT, U_LONG, U_LLONG, -1},
 	{0, 0, 0, 0, 0, 0, 0}
 };
 
@@ -98,12 +100,12 @@ static int		g_type_table[N_SPECIFIERS][9] =
 
 enum					e_printf_flags
 {
-	NON_FLAG = 0b00000,
-	MINUS_FLAG = 0b00001,
-	PLUS_FLAG = 0b00010,
-	SPACE_FLAG = 0b00100,
-	HASH_FLAG = 0b01000,
-	ZERO_FLAG = 0b10000
+    NON_FLAG   = 0b00000,
+    MINUS_FLAG = 0b00001,
+    PLUS_FLAG  = 0b00010,
+    SPACE_FLAG = 0b00100,
+    HASH_FLAG  = 0b01000,
+    ZERO_FLAG  = 0b10000
 };
 
 static int		g_flag_table[N_FLAGS][2] =
@@ -128,7 +130,6 @@ typedef struct			s_format
 typedef struct			s_string
 {
 	char				*output;
-	char				single[1];
 	int					length;
 	int					free;
 }						t_string;
@@ -145,6 +146,7 @@ typedef union			u_spec_functs
 	t_string			(*o_handler)(t_format *format, unsigned long long val);
 	t_string			(*f_handler_double)(t_format *format, double);
 	t_string			(*f_handler_long)(t_format *format, long double);
+	t_string			(*b_handler)(t_format *format, unsigned long long val);
 	t_string			(*perc_handler)(t_format *format, ...);
 }						t_spec_functs;
 
