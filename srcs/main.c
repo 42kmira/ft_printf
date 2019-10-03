@@ -6,12 +6,12 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 17:59:46 by kmira             #+#    #+#             */
-/*   Updated: 2019/08/26 22:42:54 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/29 21:54:44 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "../libft/libft.h"
+#include "libft.h"
 
 #define BUFFER 300
 
@@ -61,26 +61,26 @@ int		convert(const char *format_str, size_t *index, va_list args)
 	return (converted_string.length);
 }
 
-int		ft_printf(const char *format, ...)
+int		ft_printf(const char *format_str, ...)
 {
 	size_t	i;
 	size_t	j;
 	size_t	result;
 	va_list args;
 
-	va_start(args, format);
+	va_start(args, format_str);
 	i = 0;
 	result = 0;
-	while (format[i] != '\0')
+	while (format_str[i] != '\0')
 	{
 		j = 0;
-		while (format[j + i] != '\0' && format[j + i] != '%')
+		while (format_str[j + i] != '\0' && format_str[j + i] != '%')
 			j++;
-		buffer_output(&(format[i]), j, 0);
+		buffer_output(&(format_str[i]), j, 0);
 		result = result + j;
 		i = i + j;
-		if (format[i] == '%')
-			result += convert(format, &i, args);
+		if (format_str[i] == '%')
+			result += convert(format_str, &i, args);
 	}
 	va_end(args);
 	buffer_output("", 0, 1);

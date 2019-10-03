@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 11:17:49 by kmira             #+#    #+#             */
-/*   Updated: 2019/08/25 23:18:22 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/28 22:33:50 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ int			extract_length(const char *format_string, size_t *index)
 	i = 0;
 	while (g_length_table[i].str[0] != '\0')
 	{
-		if (ft_strncmp(g_length_table[i].str, &format_string[*index], ft_strlen(g_length_table[i].str)) == 0)
+		if (ft_strncmp(g_length_table[i].str, &format_string[*index],
+		ft_strlen(g_length_table[i].str)) == 0)
 		{
 			*index = *index + ft_strlen(g_length_table[i].str);
 			return (g_length_table[i].length);

@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/17 16:03:10 by kmira             #+#    #+#             */
-/*   Updated: 2019/08/22 00:00:30 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/29 16:48:02 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ uintmax_t	correct_number(uintmax_t val, int signed_bit, int length, int *sign)
 
 	*sign = 0;
 	mask = signed_mask_p(length);
-	if (signed_bit >= 0)
+	if (signed_bit > 0)
 		if (val & (1ULL << (signed_bit * 8 - 1)))
 		{
 			*sign = 1;

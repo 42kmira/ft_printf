@@ -6,13 +6,14 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 19:32:48 by kmira             #+#    #+#             */
-/*   Updated: 2019/08/22 21:53:55 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/29 21:54:53 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 extern int g_type_table[N_SPECIFIERS][9];
+extern t_funct g_function_table[N_SPECIFIERS];
 
 #define SPECIFIER 0
 
@@ -21,47 +22,36 @@ int			get_argument_size(int specifier, int length)
 	int i;
 
 	i = 0;
+	if (specifier == 'F' && length == XL)
+		return (g_type_table[7][length]);
 	while (g_type_table[i][SPECIFIER] != NULL_TERM)
 	{
-		if (g_type_table[i][SPECIFIER] == ft_tolower(specifier))
+		if (g_type_table[i][SPECIFIER] == specifier)
 			return (g_type_table[i][length]);
 		i++;
 	}
 	if (g_type_table[i][SPECIFIER] == NULL_TERM)
-		write(1, RED"SPECIFIER does not exist\n"COLOR_RESET, 32);
+		write(1, RED"SPECIFIER does not exist\n"COLOR_RESET, 35);
 	return (-1);
 }
 
 void		set_specifier_handler(t_spec_functs *function, const char *spec)
 {
-	if (spec[0] == 'c')
-		function->c_handler = c_handler;
-	if (spec[0] == 's')
-		function->s_handler = s_handler;
-	if (spec[0] == 'p')
-		function->p_handler = p_handler;
-	if (spec[0] == 'd')
-		function->d_handler = d_handler;
-	if (spec[0] == 'i')
-		function->d_handler = i_handler;
-	if (spec[0] == 'u')
-		function->u_handler = u_handler;
-	if (spec[0] == 'x' || spec[0] == 'X')
-		function->x_handler = x_handler;
-	if (spec[0] == 'o' || spec[0] == 'O')
-		function->o_handler = o_handler;
-	if (spec[0] == 'f')
-		function->f_handler_double = f_handler_double;
+	int i;
+
+	i = 0;
 	if (spec[0] == 'F')
-		function->f_handler_long = f_handler_long;
-	if (spec[0] == '%')
-		function->perc_handler = perc_handler;
-	if (spec[0] == 'b')
-		function->b_handler = b_handler;
+		*function = (t_spec_functs)f_handler_long;
+	while (g_function_table[i].specifier != 0)
+	{
+		if (g_function_table[i].specifier == spec[0])
+			*function = (t_spec_functs)g_function_table[i].function;
+		i++;
+	}
 }
 
-#define ARG_SIZE_1 (unsigned char)va_arg(args, uint32_t)
-#define ARG_SIZE_2 (unsigned short)va_arg(args, uint32_t)
+#define ARG_SIZE_1 va_arg(args, uint32_t)
+#define ARG_SIZE_2 va_arg(args, uint32_t)
 #define ARG_SIZE_4 va_arg(args, uint32_t)
 #define ARG_SIZE_8 va_arg(args, uint64_t)
 #define ARG_SIZE_9 va_arg(args, double)

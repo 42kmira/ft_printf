@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 12:58:18 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/17 12:04:22 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/28 18:23:42 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,26 +38,3 @@ char	*ft_itoa(int n)
 	}
 	return (head);
 }
-
-// char		*itoa_base(long long int num, int base, int flag)
-// {
-// 	char			alloc[50];
-// 	char			*res;
-// 	int				i;
-// 	int				neg;
-
-// 	neg = 1;
-// 	res = (flag == 0) ? "0123456789abcdef" : "0123456789ABCDEF";
-// 	if (num == 0)
-// 		return (ft_strdup("0"));
-// 	i = 48;
-// 	alloc[49] = '\0';
-// 	if (num < 0)
-// 		neg = -1;
-// 	while (num != 0)
-// 	{
-// 		alloc[i--] = res[neg * (num % base)];
-// 		num /= base;
-// 	}
-// 	return (ft_strdup(&(alloc[++i])));
-// }

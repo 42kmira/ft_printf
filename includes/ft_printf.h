@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 18:09:42 by kmira             #+#    #+#             */
-/*   Updated: 2019/08/22 21:52:32 by kmira            ###   ########.fr       */
+/*   Updated: 2019/08/28 23:46:02 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <unistd.h>
 
 # include "libft.h"
-# include "ft_printf_structs.h"
+# include "ft_printf_config.h"
 # include "color.h"
 
 /*
@@ -40,7 +40,7 @@
 #  define EXIT(error_msg) ft_puterror(error_msg)
 # endif
 
-int			ft_printf(const char *format, ...);
+int			ft_printf(char const *format, ...);
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
