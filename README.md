@@ -31,12 +31,12 @@ With the following datatype modifiers
 - l
 
 The following flags are also supported:
-- -
-- +
-- ' '
-- #
+- \-
+- \+
+- (space)
+- \#
 - 0
 
 And lastly width and .precision is also supported.
 
-Running make all creates an library .a file that can be compile with other programs to include this program.
+Running ```make all``` creates an library .a file that can be compile with other programs to include this program.
