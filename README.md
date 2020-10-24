@@ -14,28 +14,28 @@ buffer. It is somewhat comparable in speed to the actual printf, except for prin
 this is however with my limited testing, partial functionality, and maintaining a certain code style. The buffer allows minimal calls to the write function, a costly system function that interacts with the kernel. Printf writes to stdout which is line buffered, mine is block buffered, whose limit is defined by the macro BUFFER.
 
 Supported specifiers include:
-	d or i
-	u
-	o
-	x
-	X
-	f
-	c
-	p
-	%
+- d or i
+- u
+- o
+- x
+- X
+- f
+- c
+- p
+- %
 
 With the following datatype modifiers
-	hh
-	h
-	l
-	l
+- hh
+- h
+- l
+- l
 
 The following flags are also supported:
-	-
-	+
-	' '
-	#
-	0
+- -
+- +
+- ' '
+- #
+- 0
 
 And lastly width and .precision is also supported.
 
